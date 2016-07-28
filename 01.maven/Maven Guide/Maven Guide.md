@@ -4,6 +4,26 @@
 
 Maven requires JDK installed on your machine.
 
+First of all, on your terminal console go to your home directory by the following command line:
+```
+ cd
+```
+and you can see where you are at this moment by:
+```
+ pwd
+```
+which is like /Users/mustafa for me.
+
+Then in order to see the list of the files in this directory:
+```
+ ls -al
+```
+You will see that there is a file called as **.bash_profile**, to open that file:
+```
+ open .bash_profile
+```
+After this point, add the following command lines to this file.
+
 1- In order to set the JAVA_HOME environment variable:
 ```
 export JAVA_HOME=/Libray/Java/Home
@@ -19,6 +39,8 @@ export MAVEN_OPTS=‘-Xms256m -Xmx512m’
 ```
 export PATH=$M2:$PATH
 ```
+
+Then just save the file and go back to your terminal console.
 
 4- Now to verify that Maven is ready to use, type the following command line:
 ```
