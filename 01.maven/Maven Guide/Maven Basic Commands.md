@@ -2,11 +2,11 @@
 
 **creating java project:**
 ```
-mvn archetype:create -DgroupId=org.yourcompany.project -DartifactId=application
+mvn archetype:generate -DgroupId=org.yourcompany.project -DartifactId=application
 ```
 **creating web project:**
 ```
-mvn archetype:create -DgroupId=org.yourcompany.project -DartifactId=application
+mvn archetype:generate -DgroupId=org.yourcompany.project -DartifactId=application
 -DarchetypeArtifactId=maven-archetype-webapp
 ```
 
