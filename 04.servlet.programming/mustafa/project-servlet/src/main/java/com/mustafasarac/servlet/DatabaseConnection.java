@@ -1,7 +1,11 @@
 package com.mustafasarac.servlet;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  * Created by mustafasarac on 3.08.2016.
@@ -25,6 +29,8 @@ public class DatabaseConnection {
     private DatabaseConnection(){
         try {
             Class.forName(JDBC_DRIVER);
+            Properties properties = new Properties();
+
         } catch(Exception exception){
             exception.printStackTrace();
         }
@@ -36,9 +42,10 @@ public class DatabaseConnection {
                 connection = DriverManager.getConnection(URL, USER, PASSWORD);
             }
             System.out.println("\nConnected database successfully...");
-        } catch(Exception exception){
+        } catch(SQLException exception){
             exception.printStackTrace();
             System.out.println("\nFailed database connection...");
+            throw new RuntimeException(exception);
         }
         return connection;
     }
