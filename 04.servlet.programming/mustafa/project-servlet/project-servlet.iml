@@ -7,9 +7,12 @@
           <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/web/WEB-INF/web.xml" />
         </descriptors>
         <webroots>
-          <root url="file://$MODULE_DIR$/web" relative="/" />
+          <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
-        <sourceRoots />
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/src/main/java" />
+          <root url="file://$MODULE_DIR$/src/main/resources" />
+        </sourceRoots>
       </configuration>
     </facet>
   </component>
@@ -25,6 +28,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.5.4" level="application_server_libraries" />
-    <orderEntry type="library" name="ojdbc7" level="project" />
+    <orderEntry type="library" name="Maven: com.oracle:ojdbc14:10.2.0.4.0" level="project" />
   </component>
 </module>
