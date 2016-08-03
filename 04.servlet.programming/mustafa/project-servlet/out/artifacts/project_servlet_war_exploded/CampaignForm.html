@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="js/bootstrap.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+
+<form name="campaignForm" method="get" class="CampaignServlet" action="campaignServlet">
+
+    <table border="0" cellpadding=2 cellspacing="2">
+        <tr>
+            <td align="right">
+                Name <font color="red">(*)</font>
+            </td>
+            <td><input type="text" name="name" value="campaign_7402" required/>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                External Campaign Id<font color="red">(*)</font>
+            </td>
+            <td><input type="text" name="externalCampaignId" value="campaign_7402" required/>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">Start Date<font color="red">(*)</font></td>
+            <td><input type="date" name="startDate" required/>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                Type<font color="red">(*)</font></td>
+            <td>
+                <select name="type" required>
+                    <option>0 - NON-RECURRING</option>
+                    <option>1 - NON-RECURRING</option>
+                    <option>2 - NON-RECURRING</option>
+                    <option>3 - NON-RECURRING</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">End Date </td>
+            <td><input type="date" name="endDate"/></td>
+        </tr>
+        <tr>
+            <td align="right">Count Control</td>
+            <td><input type="text" name="countControl" /></td>
+        </tr>
+        <tr>
+            <td align="right">Option <font color="red">(*)</font></td>
+            <td>
+                <select name="countOption" required>
+                    <option>0 - SCHEDULE</option>
+                    <option>1 - SCHEDULE</option>
+                    <option>2 - SCHEDULE</option>
+                    <option>3 - SCHEDULE</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" style="vertical-align: top;">Description</td>
+            <td><textarea name="description" cols="30" rows="10"></textarea></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="right"><input type="submit" value="Submit"> </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
