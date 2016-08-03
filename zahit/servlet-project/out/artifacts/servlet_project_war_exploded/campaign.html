@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="resources/js/bootstrap.js"></script>
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+
+<form method="get" action="campaign">
+
+<input type="date">
+    <table border="0" cellpadding=2 cellspacing="2">
+        <tr>
+            <td>Name <font color="red">(*)</font></td>
+            <td><input type="text" name="name"/></td>
+        </tr>
+        <tr>
+            <td>External Campaign Id (*)</td>
+            <td><input type="text" name="externalCampaignId" /></td>
+        </tr>
+        <tr>
+            <td>Start Date (*)</td>
+            <td><input type="text" name="startDate"/></td>
+        </tr>
+        <tr>
+            <td>Type (*)</td>
+            <td>
+                <select name="type">
+                    <option>0 - NON-RECURRING</option>
+                    <option>1 - NON-RECURRING</option>
+                    <option>2 - NON-RECURRING</option>
+                    <option>3 - NON-RECURRING</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>End Date </td>
+            <td><input type="text" name="endDate" /></td>
+        </tr>
+        <tr>
+            <td>Count Control</td>
+            <td><input type="text" name="countControl" /></td>
+        </tr>
+        <tr>
+            <td>Option (*)</td>
+            <td>
+                <select name="option">
+                    <option>0 - SCHEDULE</option>
+                    <option>1 - SCHEDULE</option>
+                    <option>2 - SCHEDULE</option>
+                    <option>3 - SCHEDULE</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Description (*)</td>
+            <td><textarea cols="30" rows="10"></textarea></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="right"><input type="submit" value="Submit"> </td>
+
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>
