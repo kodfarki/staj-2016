@@ -26,8 +26,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.0.30" level="application_server_libraries" />
     <orderEntry type="library" name="ojdbc6" level="project" />
+    <orderEntry type="library" name="javax.servlet.jsp.jstl-1.2.1-javadoc" level="project" />
     <orderEntry type="library" name="Maven: com.oracle:ojdbc14:10.2.0.4.0" level="project" />
     <orderEntry type="library" name="Maven: jstl:jstl:1.2" level="project" />
-    <orderEntry type="library" name="javax.servlet.jsp.jstl-1.2.1-javadoc" level="project" />
   </component>
 </module>
