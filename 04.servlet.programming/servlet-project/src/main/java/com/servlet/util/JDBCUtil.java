@@ -20,21 +20,25 @@ public class JDBCUtil {
             e.printStackTrace();
             System.out.println("Driver Not Found");
         }
-
     }
 
     public static Connection getConnection() {
         if (connection == null) {
-
             try {
-                connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mzgg", "1");
+                connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mustafa", "sento");
             } catch (SQLException e) {
                 e.printStackTrace();
                 System.out.println("Connection Failed");
             }
         }
-
-
         return connection;
+    }
+
+    public static void closeConnection(){
+        try {
+            connection.close();
+        } catch(Exception exception){
+            exception.printStackTrace();
+        }
     }
 }
