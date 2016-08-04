@@ -17,6 +17,8 @@ public class Test {
 
 
         try {
+
+
             PreparedStatement ps = JDBCUtil.getConnection().prepareStatement("SELECT * FROM SLCM_CAMPAIGN");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
