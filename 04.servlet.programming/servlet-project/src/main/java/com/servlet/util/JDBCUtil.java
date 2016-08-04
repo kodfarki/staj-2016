@@ -25,9 +25,8 @@ public class JDBCUtil {
 
     private JDBCUtil() {
 
-
         try {
-            input = new FileInputStream("config.properties");
+            input = new FileInputStream("/Users/hamitsarac/projects/staj-2016/04.servlet.programming/servlet-project/config.properties");
             props.load(input);
 
             driverClassName = props.getProperty("driverClassName");
@@ -43,6 +42,7 @@ public class JDBCUtil {
     }
 
     public static Connection getConnection() throws IOException {
+
         if (connection == null) {
             try {
                 connection = DriverManager.getConnection(url, userName, password);
