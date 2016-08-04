@@ -41,7 +41,6 @@
                     <option>0 - NON-RECURRING</option>
                     <option>1 - NON-RECURRING</option>
                     <option>2 - NON-RECURRING</option>
-                    <option>3 - NON-RECURRING</option>
                 </select>
             </td>
         </tr>
