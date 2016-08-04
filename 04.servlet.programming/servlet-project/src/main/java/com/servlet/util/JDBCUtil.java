@@ -27,6 +27,7 @@ public class JDBCUtil {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         try {
             input = new FileInputStream("/Users/hamitsarac/projects/staj-2016/04.servlet.programming/servlet-project/config.properties");
 =======
@@ -34,6 +35,11 @@ public class JDBCUtil {
         try {
             input = new FileInputStream("config.properties");
 >>>>>>> 9ef94c9abc38ff5aec810f3998e3e708b8300d65
+=======
+
+        try {
+            input = new FileInputStream("config.properties");
+>>>>>>> d9ea02302a5da14c9f67b0066b96924f46352172
 =======
 
         try {
@@ -56,9 +62,12 @@ public class JDBCUtil {
     public static Connection getConnection() throws IOException {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 9ef94c9abc38ff5aec810f3998e3e708b8300d65
+=======
+>>>>>>> d9ea02302a5da14c9f67b0066b96924f46352172
 =======
 >>>>>>> d9ea02302a5da14c9f67b0066b96924f46352172
         if (connection == null) {
