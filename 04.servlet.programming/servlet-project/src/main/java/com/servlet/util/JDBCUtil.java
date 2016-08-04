@@ -1,6 +1,7 @@
 package com.servlet.util;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -26,7 +27,13 @@ public class JDBCUtil {
     private JDBCUtil() {
 
         try {
-            input = new FileInputStream("/Users/hamitsarac/projects/staj-2016/04.servlet.programming/servlet-project/config.properties");
+            input = new FileInputStream("/tmp/config.properties");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+        try {
             props.load(input);
 
             driverClassName = props.getProperty("driverClassName");
@@ -48,7 +55,7 @@ public class JDBCUtil {
                 connection = DriverManager.getConnection(url, userName, password);
             } catch (SQLException e) {
                 e.printStackTrace();
-                System.out.println("Connection Failed");
+                throw new RuntimeException(e);
             }
         }
         return connection;

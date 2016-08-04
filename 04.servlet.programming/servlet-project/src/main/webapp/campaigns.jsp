@@ -47,7 +47,8 @@
     %>
 
     <tr>
-        <td><% out.println(resultSet.getInt("CAMPAIGN_ID")); %></td>
+        <td><% long campaign_id = resultSet.getLong("CAMPAIGN_ID");
+            out.println(campaign_id); %></td>
         <td><% out.println(resultSet.getString("EXTERNAL_CAMPAIGN_ID")); %></td>
         <td><% out.println(resultSet.getDate("START_DATE")); %></td>
         <td><% out.println(resultSet.getDate("END_DATE")); %></td>
@@ -56,10 +57,10 @@
         <td><% out.println(resultSet.getInt("TYPE")); %></td>
         <td><% out.println(resultSet.getString("CAMPAIGN_NAME")); %></td>
         <td><% out.println(resultSet.getString("DESCRIPTION")); %></td>
-        <td><% out.println(resultSet.getDate("CREATION_DATE")); %></td>
-        <td><% out.println(resultSet.getDate("MODIFICATION_DATE")); %></td>
-        <td><% out.println(resultSet.getInt("VERSION")); %></td>
-        <td><a href="update.jsp?campaignId=<% out.println(resultSet.getInt("CAMPAIGN_ID"));  %>" >Sil </a> </td>
+        <td><% out.println(resultSet.getTime("CREATION_DATE")); %></td>
+        <td><% out.println(resultSet.getTime("MODIFICATION_DATE")); %></td>
+        <td><% out.println(resultSet.getLong("VERSION")); %></td>
+        <td><a href="update.jsp?campaignId=<% out.println(campaign_id);  %>" >Sil </a> </td>
 
     </tr>
     <% } %>
