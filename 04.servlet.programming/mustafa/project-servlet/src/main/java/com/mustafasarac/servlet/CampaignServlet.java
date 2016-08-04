@@ -81,7 +81,6 @@ public class CampaignServlet extends HttpServlet {
                         myEndDate, myCountControl, myCampaignOption, myType, myCampaignName,
                         myDescription, myCreationDate, myModificationDate, myVersion);
                 DatabaseQuery.campaignList.add(DatabaseQuery.campaign);
-
                 DatabaseQuery.close();
             }
 
