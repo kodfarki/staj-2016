@@ -40,6 +40,8 @@
         <th>CREATION_DATE</th>
         <th>MODIFICATION_DATE</th>
         <th>VERSION</th>
+        <th>Update</th>
+        <th>Delete</th>
     </tr>
 
     <%
@@ -60,7 +62,7 @@
         <td><% out.println(resultSet.getTime("CREATION_DATE")); %></td>
         <td><% out.println(resultSet.getTime("MODIFICATION_DATE")); %></td>
         <td><% out.println(resultSet.getLong("VERSION")); %></td>
-        <td><a href="update.jsp?campaignId=<% out.println(campaign_id);  %>" >Sil </a> </td>
+        <td><a href="update.jsp?campaignId=<% out.println(campaign_id);  %>" >Update </a> </td>
 
     </tr>
     <% } %>

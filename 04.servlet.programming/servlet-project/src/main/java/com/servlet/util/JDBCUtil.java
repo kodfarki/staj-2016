@@ -27,13 +27,16 @@ public class JDBCUtil {
     private JDBCUtil() {
 
         try {
-            input = new FileInputStream("/tmp/config.properties");
+
+            input = new FileInputStream("C:\\Users\\GUNEY\\Desktop\\staj-2016\\04.servlet.programming\\servlet-project\\config.properties");
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
 
         try {
+
             props.load(input);
 
             driverClassName = props.getProperty("driverClassName");
