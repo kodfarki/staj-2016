@@ -1,1 +1,1 @@
-﻿# Git ile yapılan çalışmalar sadece bu dokumantosyon ile sınırlı değildir
+ git log --graph --oneline --decorate
