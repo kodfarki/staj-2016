@@ -25,10 +25,9 @@ public class JDBCUtil {
     static String password;
 
     private JDBCUtil() {
-
         try {
-
-            input = new FileInputStream("C:\\Users\\GUNEY\\Desktop\\staj-2016\\04.servlet.programming\\servlet-project\\config.properties");
+            // Copy the path of config.properties and fill in the following line
+            input = new FileInputStream("/Users/hamitsarac/projects/staj-2016/04.servlet.programming/servlet-project/config.properties");
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
