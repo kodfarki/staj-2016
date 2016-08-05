@@ -82,6 +82,7 @@ public class Update extends HttpServlet {
 
             preparedStatement.executeQuery();
             out.print("Updated successfully");
+            response.sendRedirect("campaigns.jsp");
             preparedStatement.close();
 
 

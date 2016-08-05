@@ -26,6 +26,9 @@
 
 
 %>
+
+<a href="CampaignForm.jsp">Add The Campaigns</a>
+
 <table border="1" class="table table-striped">
     <tr>
         <th>ID</th>
@@ -63,7 +66,7 @@
         <td><% out.println(resultSet.getTime("MODIFICATION_DATE")); %></td>
         <td><% out.println(resultSet.getLong("VERSION")); %></td>
         <td><a href="update.jsp?campaignId=<% out.println(campaign_id);  %>" >Update </a> </td>
-
+        <td><a href="delete.jsp?campaignId=<% out.println(campaign_id);  %>" >Delete</a> </td>
     </tr>
     <% } %>
 </table>

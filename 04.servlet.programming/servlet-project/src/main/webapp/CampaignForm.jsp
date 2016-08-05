@@ -64,6 +64,9 @@
             </td>
         </tr>
         <tr>
+            <%
+                out.println();
+            %>
             <td align="right" style="vertical-align: top">Description</td>
             <td><textarea name="description" cols="30" rows="10" style="background-color:#EEF7FF;"></textarea></td>
         </tr>

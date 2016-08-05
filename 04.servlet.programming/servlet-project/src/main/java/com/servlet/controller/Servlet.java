@@ -78,9 +78,10 @@ public class Servlet extends HttpServlet {
             preparedStatement.setString(8, description);
 
             preparedStatement.executeQuery();
+            response.sendRedirect("campaigns.jsp");
             preparedStatement.close();
 
-            JDBCUtil.closeConnection();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
