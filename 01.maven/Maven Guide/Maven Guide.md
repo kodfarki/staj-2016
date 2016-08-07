@@ -78,12 +78,17 @@ Maven will start to create the Java project structure.
 
 It will ask you which plugin do you want to add to the project structure and then it will ask you to give the information about *groupId, artifactId, version number*. After this point, it builds the project. This project contains the source and test code, resources and pom.xml.
 
+
+**Installing JAR File Into Local Maven Repository**
+
 Additionally, in order to **install jar** into local Maven repository: 
 ```
 $ mvn install:install-file -Dfile=<path-to-file> \
     -DgroupId=<group-id> -DartifactId=<artifact-id> \
     -Dversion=<version> -Dpackaging=<packaging>
 ```
+
+and then, in order to get this JAR file from Local Repository and to import into the project:
 
 Adding the dependency to POM file like any other dependency:
 ```
@@ -95,3 +100,5 @@ Adding the dependency to POM file like any other dependency:
   </dependency>
 </dependencies>
 ```
+
+After that, you can set 'Toggle Offline Mode' by Maven Projects Bar in Intellij in order to direct Maven to search this JAR file inside the Local Repository, but not on the Internet.
