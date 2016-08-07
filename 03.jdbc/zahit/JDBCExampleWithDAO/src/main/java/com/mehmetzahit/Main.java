@@ -18,9 +18,9 @@ public class Main {
 
         //update
 
-       // campaign.setCampaignID(53);
-       // campaign.setDescription("www.mehmetzahit.com");
-        //jdbcCampaignDAO.update(campaign);
+        campaign.setCampaignID(53);
+        campaign.setDescription("www.mehmetzahit.com");
+        jdbcCampaignDAO.update(campaign);
 
         //Read
         jdbcCampaignDAO.select();

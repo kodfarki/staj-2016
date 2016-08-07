@@ -15,7 +15,7 @@ public class JDBCCampaignDAO implements CampaignDAO {
     public Connection getConnection() {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mzgg", "1");
+            connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "mustafa", "sento");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
