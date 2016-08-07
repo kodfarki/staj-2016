@@ -20,4 +20,4 @@ increment by 1
 minvalue 1
 ```
 
-That's all you need to run this project.
+That's all you need to do for running this project.
