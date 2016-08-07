@@ -66,7 +66,7 @@ A typical Maven **Build Lifecycle** consists of the following phases:
 
 When a phase will be executed, all phases up to this specific phase will be executed during this process.
 
-
+<br>
 **Creating a Project by Maven on Command Console**
 
 By the following command line:
@@ -78,10 +78,10 @@ Maven will start to create the Java project structure.
 
 It will ask you which plugin do you want to add to the project structure and then it will ask you to give the information about *groupId, artifactId, version number*. After this point, it builds the project. This project contains the source and test code, resources and pom.xml.
 
-
+<br>
 **Installing JAR File Into Local Maven Repository**
 
-Additionally, in order to **install jar** into local Maven repository: 
+In order to **install jar** into local Maven repository: 
 ```
 $ mvn install:install-file -Dfile=<path-to-file> \
     -DgroupId=<group-id> -DartifactId=<artifact-id> \
@@ -101,4 +101,4 @@ Adding the dependency to POM file like any other dependency:
 </dependencies>
 ```
 
-After that, you can set 'Toggle Offline Mode' by Maven Projects Bar in Intellij in order to direct Maven to search this JAR file inside the Local Repository, but not on the Internet.
+After that, you can set **'Toggle Offline Mode'** by _Maven Projects Bar_ in Intellij in order to direct Maven to search this JAR file inside the Local Repository, but not on the Internet.
