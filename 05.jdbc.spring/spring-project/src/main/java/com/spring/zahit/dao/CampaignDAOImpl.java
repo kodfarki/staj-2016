@@ -27,7 +27,6 @@ public class CampaignDAOImpl implements CampaignDAO {
     @Override
     public void insert(Campaign campaign) {
 
-
         try {
             Connection connection = dataSource.getConnection();
             String query = "INSERT INTO SLCM_CAMPAIGN VALUES (SEQ_SLCM_DEFAULT.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?)";
@@ -55,6 +54,37 @@ public class CampaignDAOImpl implements CampaignDAO {
 
         }
 
+    }
+
+    @Override
+    public void update(Campaign campaign) {
+        try {
+            Connection connection = dataSource.getConnection();
+            String query = "UPDATE SLCM_CAMPAIGN SET START_DATE = ?, END_DATE= ?, COUNT_CONTROL= ?, CAMPAIGN_OPTION= ?, SLCM_CAMPAIGN.TYPE=? , CAMPAIGN_NAME= ?, DESCRIPTION= ?, CREATION_DATE= ?, MODIFICATION_DATE= ?, VERSION= ? WHERE CAMPAIGN_ID= ?";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setDate(1, campaign.getStartDate());
+            preparedStatement.setDate(2, campaign.getEndDate());
+            preparedStatement.setInt(3, campaign.getCountControl());
+            preparedStatement.setInt(4, campaign.getCampaignOption());
+            preparedStatement.setInt(5, campaign.getType());
+            preparedStatement.setString(6, campaign.getCampaignName());
+            preparedStatement.setString(7, campaign.getDescription());
+            preparedStatement.setTimestamp(8, campaign.getCreationDate());
+            preparedStatement.setTimestamp(9, campaign.getModificationDate());
+            preparedStatement.setInt(10, campaign.getVersion());
+
+            preparedStatement.setLong(11,campaign.getCampaignID());
+
+
+            int i = preparedStatement.executeUpdate();
+            if (i > 0) System.out.println("Güncelleme Başarılı");
+            else
+                System.out.println("Güncelleme Başarısız");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+
+        }
     }
 
     @Override

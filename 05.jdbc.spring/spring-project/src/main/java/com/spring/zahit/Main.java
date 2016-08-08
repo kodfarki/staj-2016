@@ -1,5 +1,6 @@
 package com.spring.zahit;
 
+import com.spring.mustafa.query.DatabaseQuery;
 import com.spring.zahit.dao.CampaignDAOImpl;
 import com.spring.zahit.model.Campaign;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -14,13 +15,29 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) {
-
-        Campaign campaign1 = new Campaign();
-        
         ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("spring-config-zahit.xml");
-        CampaignDAOImpl campaignDAOImpl = (CampaignDAOImpl) context.getBean("connection");
+        Campaign campaign1 = new Campaign();
 
-        //campaignDAOImpl.insert(campaign1);
+        DatabaseQuery databaseQuery=new DatabaseQuery();
+
+        campaign1.setStartDate(databaseQuery.getDate("2010-08-01"));
+        campaign1.setEndDate(databaseQuery.getDate("2010-08-01"));
+        campaign1.setCountControl(6);
+        campaign1.setCampaignOption(5);
+        campaign1.setType(6);
+        campaign1.setCampaignName("Turkcell yaz kampanyası 5gb 10tl");
+        campaign1.setDescription("ogrenciye bedava");
+        campaign1.setModificationDate(databaseQuery.getTimestamp("2010-08-01 23:10:20.111"));
+        campaign1.setCreationDate(databaseQuery.getTimestamp("2010-08-01 23:10:20.111"));
+        campaign1.setVersion(4);
+
+
+
+        CampaignDAOImpl campaignDAOImpl = (CampaignDAOImpl) context.getBean("connection");
+        campaignDAOImpl.insert(campaign1);
+
+        //update
+        campaignDAOImpl.update(campaign1); //campaignId is required for update
 
 
         //Select Query
