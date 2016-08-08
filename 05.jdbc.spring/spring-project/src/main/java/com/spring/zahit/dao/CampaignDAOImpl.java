@@ -59,7 +59,7 @@ public class CampaignDAOImpl implements CampaignDAO {
 
     @Override
     public List<Campaign> campaigns() {
-        List<Campaign> camp=new ArrayList<Campaign>();
+        List<Campaign> camp = new ArrayList<Campaign>();
         Connection connection = null;
         String query = "SELECT * FROM SLCM_CAMPAIGN";
         try {
@@ -82,12 +82,9 @@ public class CampaignDAOImpl implements CampaignDAO {
 
                 camp.add(campaign);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
-        return null;
+        return camp;
     }
 }

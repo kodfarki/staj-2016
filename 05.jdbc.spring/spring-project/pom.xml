@@ -36,19 +36,11 @@
             <artifactId>spring-context</artifactId>
             <version>4.3.2.RELEASE</version>
         </dependency>
-<<<<<<< Updated upstream
-=======
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
->>>>>>> Stashed changes
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>4.3.2.RELEASE</version>
         </dependency>
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-
     </dependencies>
 </project>
