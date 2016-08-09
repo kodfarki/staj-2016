@@ -1,14 +1,9 @@
 package com.spring.zahit;
 
-import com.spring.mustafa.query.DatabaseQuery;
-import com.spring.zahit.dao.CampaignDAOImpl;
+import com.spring.mustafa.dao.CampaignDAOImpl;
 import com.spring.zahit.model.Campaign;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created by GUNEY on 8.08.2016.
@@ -18,7 +13,7 @@ public class Main {
         ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("spring-config-zahit.xml");
         Campaign campaign1 = new Campaign();
 
-        DatabaseQuery databaseQuery=new DatabaseQuery();
+        CampaignDAOImpl databaseQuery=new CampaignDAOImpl();
 
         campaign1.setStartDate(databaseQuery.getDate("2010-08-01"));
         campaign1.setEndDate(databaseQuery.getDate("2010-08-01"));
@@ -33,7 +28,7 @@ public class Main {
 
 
 
-        CampaignDAOImpl campaignDAOImpl = (CampaignDAOImpl) context.getBean("connection");
+        com.spring.zahit.dao.CampaignDAOImpl campaignDAOImpl = (com.spring.zahit.dao.CampaignDAOImpl) context.getBean("connection");
         campaignDAOImpl.insert(campaign1);
 
         //update

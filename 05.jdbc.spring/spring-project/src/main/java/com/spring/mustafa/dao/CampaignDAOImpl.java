@@ -1,4 +1,4 @@
-package com.spring.mustafa.query;
+package com.spring.mustafa.dao;
 
 import com.spring.mustafa.model.Campaign;
 
@@ -15,7 +15,7 @@ import java.util.List;
  */
 
 
-public class DatabaseQuery implements Query {
+public class CampaignDAOImpl implements CampaignDAO {
 
     private DataSource dataSource;
 
@@ -41,6 +41,7 @@ public class DatabaseQuery implements Query {
         return connection;
     }
 
+    @Override
     //  Inserting into the Database table
     public void insert(Campaign campaign) {
         System.out.println("\nDatabaseQuery.insert");
@@ -88,8 +89,9 @@ public class DatabaseQuery implements Query {
         }
     }
 
+    @Override
     // Updating data from the Database table
-    public void update(Campaign campaign) {
+    public void update(Campaign campaign, int campaignID) {
         System.out.println("\nDatabaseQuery.update");
 
         try {
@@ -107,7 +109,7 @@ public class DatabaseQuery implements Query {
             preparedStatement.setTimestamp(8, campaign.getCreationDate());
             preparedStatement.setTimestamp(9, campaign.getModificationDate());
             preparedStatement.setInt(10, campaign.getVersion());
-            preparedStatement.setInt(11, campaign.getCampaignID());
+            preparedStatement.setInt(11, campaignID);
 
             int i = preparedStatement.executeUpdate();
             if (i > 0) {
@@ -124,17 +126,18 @@ public class DatabaseQuery implements Query {
         }
     }
 
+    @Override
     //  Deleting a row of data with specified campaignID from the Database table
-    public void delete(Campaign campaign) {
+    public void delete(int campaignID) {
         System.out.println("\nDatabaseQuery.delete");
 
         try {
             String sqlQuery = "DELETE FROM SLCM_CAMPAIGN WHERE CAMPAIGN_ID = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
-            preparedStatement.setInt(1, campaign.getCampaignID());
+            preparedStatement.setInt(1, campaignID);
 
             for (int i = 0; i < campaignList.size(); i++) {
-                if (campaignList.get(i).getCampaignID() == campaign.getCampaignID()) {
+                if (campaignList.get(i).getCampaignID() == campaignID) {
                     campaignList.remove(campaignList.get(i));
                 }
             }
@@ -154,6 +157,7 @@ public class DatabaseQuery implements Query {
         }
     }
 
+    @Override
     //  Reading data from the Database table
     public List<Campaign> select() {
         System.out.println("\nDatabaseQuery.select");
@@ -182,7 +186,9 @@ public class DatabaseQuery implements Query {
                 Timestamp myModificationDate = resultSet.getTimestamp(11);
                 int myVersion = resultSet.getInt(12);
 
-                myCampaign = new Campaign(myCampaignID, myExternalCampaignID, myStartDate, myEndDate, myCountControl, myCampaignOption, myType, myCampaignName, myDescription, myCreationDate, myModificationDate, myVersion);
+                myCampaign = new Campaign(myStartDate, myEndDate, myCountControl, myCampaignOption, myType, myCampaignName, myDescription, myCreationDate, myModificationDate, myVersion);
+                myCampaign.setCampaignID(myCampaignID);
+                myCampaign.setExternalCampaignID(myExternalCampaignID);
 
                 campaignList.add(myCampaign);
             }

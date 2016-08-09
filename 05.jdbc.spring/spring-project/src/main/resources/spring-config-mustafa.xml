@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="campaign" class="com.spring.mustafa.query.DatabaseQuery">
+    <bean id="campaign" class="com.spring.mustafa.dao.CampaignDAOImpl">
         <property name="dataSource" ref="dataSource"/>
     </bean>
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">

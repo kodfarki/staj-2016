@@ -7,7 +7,6 @@ import java.sql.Timestamp;
  * Created by mustafasarac on 08/08/16.
  */
 
-
 public class Campaign {
     private int campaignID;
     private int externalCampaignID;
@@ -22,17 +21,7 @@ public class Campaign {
     private Timestamp modificationDate;
     private int version;
 
-    @Override
-    public String toString() {
-        return "Campaign: CampaignID: " + getCampaignID() + " External CampaignID: " + getExternalCampaignID() +
-                " Start Date: " + getStartDate() + " End Date: " + getEndDate() + " Count Control: " + getCountControl() +
-                " Campaign Option: " + getCampaignOption() + " Type: " + getType() + "\n          Campaign Name: " + getCampaignName() +
-                " Description: " + getDescription() + " Creation Date: " + getCreationDate() + " Modification Date: " + modificationDate +
-                " Version: " + getVersion() + ".\n";
-    }
-
-    public Campaign(int campaignID, int externalCampaignID,
-                    Date startDate, Date endDate, int countControl,
+    public Campaign(Date startDate, Date endDate, int countControl,
                     int campaignOption, int type, String campaignName,
                     String description, Timestamp creationDate, Timestamp modificationDate, int version) {
         this.campaignID = campaignID;
@@ -143,5 +132,14 @@ public class Campaign {
 
     public void setVersion(int version) {
         this.version = version;
+    }
+
+    @Override
+    public String toString() {
+        return "Campaign: CampaignID: " + getCampaignID() + " External_CampaignID: " + getExternalCampaignID() +
+                " Start Date: " + getStartDate() + " End Date: " + getEndDate() + " Count Control: " + getCountControl() +
+                " Campaign Option: " + getCampaignOption() + " Type: " + getType() + "\n          Campaign Name: " + getCampaignName() +
+                " Description: " + getDescription() + " Creation Date: " + getCreationDate() + " Modification Date: " + modificationDate +
+                " Version: " + getVersion() + ".\n";
     }
 }
