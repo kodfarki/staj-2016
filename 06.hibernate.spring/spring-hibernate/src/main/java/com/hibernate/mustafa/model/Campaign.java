@@ -1,4 +1,4 @@
-package com.hibernate.zahit.model;
+package com.hibernate.mustafa.model;
 
 import java.util.Date;
 
