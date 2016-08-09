@@ -5,6 +5,8 @@ import com.spring.model.Campaign;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.Date;
+
 /**
  * Created by mustafasarac on 5.08.2016.
  */
@@ -24,7 +26,7 @@ public class Main {
         // 1000 which represents the CampaignID and ExternalCampaignId is just for
         // filling the field in Construction. When it is inserting into the Database Table,
         // it gets a value from the Database Sequence.
-        Campaign campaign = new Campaign(campaignDAO.getDate("2016-08-01"), campaignDAO.getDate("2016-08-01"), 1, 2, 1, "Campaign_1", "First Campaign in Database Table", campaignDAO.getTimestamp("2016-08-01 09:30:15.032"), campaignDAO.getTimestamp("2016-08-02 09:15:21.221"), 1);
+        Campaign campaign = new Campaign(new Date(), new Date(), 1, 2, 1, "Campaign_1", "First Campaign in Database Table", new Date(), new Date(), 1);
 
         // INSERT: inserting this Campaign Object into the table
         campaignDAO.insert(campaign);
@@ -37,7 +39,6 @@ public class Main {
         campaign.setCountControl(2);
         campaign.setCampaignOption(1);
         campaign.setType(2);
-        campaign.setStartDate(campaignDAO.getDate("2016-08-09"));
         campaignDAO.update(campaign, 1001);
 
         // READ: reading these objects from Database Table

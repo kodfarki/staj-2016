@@ -1,7 +1,6 @@
 package com.spring.model;
 
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Created by mustafasarac on 08/08/16.
@@ -17,13 +16,15 @@ public class Campaign {
     private int type;
     private String campaignName;
     private String description;
-    private Timestamp creationDate;
-    private Timestamp modificationDate;
+    private Date creationDate;
+    private Date modificationDate;
     private int version;
+
+    public Campaign(){ }
 
     public Campaign(Date startDate, Date endDate, int countControl,
                     int campaignOption, int type, String campaignName,
-                    String description, Timestamp creationDate, Timestamp modificationDate, int version) {
+                    String description, Date creationDate, Date modificationDate, int version) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.countControl = countControl;
@@ -108,19 +109,19 @@ public class Campaign {
         this.description = description;
     }
 
-    public Timestamp getCreationDate() {
+    public Date getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Timestamp creationDate) {
+    public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
 
-    public Timestamp getModificationDate() {
+    public Date getModificationDate() {
         return modificationDate;
     }
 
-    public void setModificationDate(Timestamp modificationDate) {
+    public void setModificationDate(Date modificationDate) {
         this.modificationDate = modificationDate;
     }
 
