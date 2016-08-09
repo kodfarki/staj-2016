@@ -1,6 +1,7 @@
 package com.spring.zahit.dao;
 
 import com.spring.zahit.model.Campaign;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -14,6 +15,7 @@ import java.util.List;
  * Created by GUNEY on 8.08.2016.
  */
 public class CampaignDAOImpl implements CampaignDAO {
+    @Autowired
     private DataSource dataSource;
 
     public void setDataSource(DataSource dataSource) {
