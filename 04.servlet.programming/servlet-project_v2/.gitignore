@@ -9,3 +9,5 @@ buildNumber.properties
 .mvn/timing.properties
 .idea/
 *.iml
+config.properties
+JDBCUtil.java

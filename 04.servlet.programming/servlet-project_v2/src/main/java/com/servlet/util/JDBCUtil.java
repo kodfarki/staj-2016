@@ -9,9 +9,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-/**
- * Created by GUNEY on 2.08.2016.
- */
+
 public class JDBCUtil {
     private static JDBCUtil me = new JDBCUtil();
     private static Connection connection;
@@ -27,16 +25,13 @@ public class JDBCUtil {
     private JDBCUtil() {
 
         try {
-
             input = new FileInputStream("/Users/hamitsarac/projects/staj-2016/04.servlet.programming/servlet-project/config.properties");
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
 
         try {
-
             props.load(input);
 
             driverClassName = props.getProperty("driverClassName");

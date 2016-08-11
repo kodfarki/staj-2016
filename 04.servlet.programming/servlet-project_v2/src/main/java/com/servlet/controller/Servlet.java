@@ -14,9 +14,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by mustafasarac on 4.08.2016.
- */
 
 @WebServlet(name = "campaignServlet", urlPatterns = {"/campaignServlet"})
 public class Servlet extends HttpServlet {
