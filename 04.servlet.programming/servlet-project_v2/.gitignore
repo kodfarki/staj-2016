@@ -8,6 +8,5 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .idea/
-JDBCUtil.java
-config.properties
+config.
 *.iml
