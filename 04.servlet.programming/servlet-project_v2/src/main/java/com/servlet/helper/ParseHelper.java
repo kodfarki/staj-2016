@@ -8,23 +8,33 @@ import java.util.Date;
 public class ParseHelper {
 
     public static java.sql.Date parseDate(String string){
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/YYYY");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date parsed = null;
         java.sql.Date date;
 
-        try {
-            parsed = simpleDateFormat.parse(string);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        if(parsed == null){
-            date  = null;
+        if(string.isEmpty()){
+            date = null;
         } else {
+            try {
+                parsed = simpleDateFormat.parse(string);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
             date = new java.sql.Date(parsed.getTime());
         }
 
         return date;
+    }
+
+    public static java.sql.Date convertToSQLDate(java.util.Date date) {
+        java.sql.Date sqlDate = null;
+
+        if (date != null) {
+            sqlDate = new java.sql.Date(date.getTime());
+        }
+
+        return sqlDate;
     }
 
     public static int parseInteger(String string){

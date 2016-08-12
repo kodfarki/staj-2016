@@ -20,7 +20,7 @@ public class Campaign {
     public Campaign() {
     }
 
-    public Campaign(Date startDate, Date endDate, int countControl,
+    public Campaign(java.sql.Date startDate, java.sql.Date endDate, int countControl,
                     int campaignOption, int type, String campaignName,
                     String description, Date creationDate, Date modificationDate, int version) {
         this.startDate = startDate;
@@ -55,9 +55,7 @@ public class Campaign {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
+    public void setStartDate(Date startDate) { this.startDate = startDate; }
 
     public Date getEndDate() {
         return endDate;

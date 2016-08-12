@@ -1,12 +1,12 @@
 package com.servlet.dao;
 
 
+import com.servlet.helper.ParseHelper;
 import com.servlet.model.Campaign;
 import com.servlet.util.JDBCUtil;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +22,8 @@ public class CampaignDAOImpl implements CampaignDAO {
         try {
             PreparedStatement preparedStatement = JDBCUtil.getConnection().prepareStatement(query);
             preparedStatement.setInt(1, campaign.getExternalCampaignID());
-            preparedStatement.setDate(2, new java.sql.Date(campaign.getStartDate().getTime()));
-            preparedStatement.setDate(3, new java.sql.Date(campaign.getEndDate().getTime()));
+            preparedStatement.setDate(2, ParseHelper.convertToSQLDate(campaign.getStartDate()));
+            preparedStatement.setDate(3, ParseHelper.convertToSQLDate(campaign.getEndDate()));
             preparedStatement.setInt(4, campaign.getCountControl());
             preparedStatement.setInt(5, campaign.getCampaignOption());
             preparedStatement.setInt(6, campaign.getType());

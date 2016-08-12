@@ -68,9 +68,9 @@
             <td>
                 <select name="countOption" style="background-color:#EEF7FF;" required>
                     <option value="0">0 - SCHEDULE</option>
-                    <option value="0">1 - SCHEDULE</option>
-                    <option value="0">2 - SCHEDULE</option>
-                    <option value="0">3 - SCHEDULE</option>
+                    <option value="1">1 - SCHEDULE</option>
+                    <option value="2">2 - SCHEDULE</option>
+                    <option value="3">3 - SCHEDULE</option>
                 </select>
             </td>
         </tr>
