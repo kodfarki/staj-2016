@@ -47,21 +47,20 @@ public class CampaignDAOImpl implements CampaignDAO {
 
     @Override
     public void update(Campaign campaign) {
-        String query = "UPDATE SLCM_CAMPAIGN SET START_DATE = ?, END_DATE= ?, COUNT_CONTROL= ?, CAMPAIGN_OPTION= ?, SLCM_CAMPAIGN.TYPE=? , CAMPAIGN_NAME= ?, DESCRIPTION= ?, CREATION_DATE= ?, MODIFICATION_DATE= ?, VERSION= ? WHERE CAMPAIGN_ID= ?";
+        String query = "UPDATE SLCM_CAMPAIGN SET EXTERNAL_CAMPAIGN_ID=?,START_DATE = ?, END_DATE= ?, COUNT_CONTROL= ?, CAMPAIGN_OPTION= ?, SLCM_CAMPAIGN.TYPE=? , CAMPAIGN_NAME= ?, DESCRIPTION= ?, VERSION= ? WHERE CAMPAIGN_ID= ?";
 
         try {
             PreparedStatement preparedStatement = JDBCUtil.getConnection().prepareStatement(query);
-            preparedStatement.setDate(1, new java.sql.Date(campaign.getStartDate().getTime()));
-            preparedStatement.setDate(2, new java.sql.Date(campaign.getEndDate().getTime()));
-            preparedStatement.setInt(3, campaign.getCountControl());
-            preparedStatement.setInt(4, campaign.getCampaignOption());
-            preparedStatement.setInt(5, campaign.getType());
-            preparedStatement.setString(6, campaign.getCampaignName());
-            preparedStatement.setString(7, campaign.getDescription());
-            preparedStatement.setTimestamp(8, new java.sql.Timestamp(campaign.getCreationDate().getTime()));
-            preparedStatement.setTimestamp(9, new java.sql.Timestamp(campaign.getModificationDate().getTime()));
-            preparedStatement.setInt(10, campaign.getVersion());
-            preparedStatement.setInt(11, campaign.getCampaignID());
+            preparedStatement.setInt(1, campaign.getExternalCampaignID());
+            preparedStatement.setDate(2, ParseHelper.convertToSQLDate(campaign.getStartDate()));
+            preparedStatement.setDate(3, ParseHelper.convertToSQLDate(campaign.getEndDate()));
+            preparedStatement.setInt(4, campaign.getCountControl());
+            preparedStatement.setInt(5, campaign.getCampaignOption());
+            preparedStatement.setInt(6, campaign.getType());
+            preparedStatement.setString(7, campaign.getCampaignName());
+            preparedStatement.setString(8, campaign.getDescription());
+            preparedStatement.setInt(9, campaign.getVersion());
+            preparedStatement.setInt(10, campaign.getCampaignID());
 
             int i = preparedStatement.executeUpdate();
             if (i > 0) {
@@ -138,7 +137,39 @@ public class CampaignDAOImpl implements CampaignDAO {
 
        return campaignList;
     }
+    @Override
+    public Campaign selectByID(int campaignID){
+        String query = "SELECT * FROM SLCM_CAMPAIGN WHERE CAMPAIGN_ID = ?";
 
+        Campaign campaign = new Campaign();
+
+        try{
+            PreparedStatement preparedStatement = JDBCUtil.getConnection().prepareStatement(query);
+            preparedStatement.setInt(1, campaignID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()){
+                campaign.setCampaignID(resultSet.getInt(1));
+                campaign.setExternalCampaignID(resultSet.getInt(2));
+                campaign.setStartDate(resultSet.getDate(3));
+                campaign.setEndDate(resultSet.getDate(4));
+                campaign.setCountControl(resultSet.getInt(5));
+                campaign.setCampaignOption(resultSet.getInt(6));
+                campaign.setType(resultSet.getInt(7));
+                campaign.setCampaignName(resultSet.getString(8));
+                campaign.setDescription(resultSet.getString(9));
+                campaign.setCreationDate(resultSet.getDate(10));
+                campaign.setModificationDate(resultSet.getDate(11));
+                campaign.setVersion(resultSet.getInt(12));
+            }
+        } catch (Exception exception){
+            exception.printStackTrace();
+        }
+        System.out.println(campaign);
+        return campaign;
+
+    }
     public void close(){
         JDBCUtil.closeConnection();
         System.out.println("\nConnection closed..");

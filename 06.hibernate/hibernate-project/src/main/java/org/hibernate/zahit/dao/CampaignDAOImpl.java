@@ -22,10 +22,18 @@ public class CampaignDAOImpl implements CampaignDAO {
     @Override
     public void insert(Campaign campaign) {
         EntityManager em = JPAUtil.getEmf().createEntityManager();
-        em.getTransaction().begin();
-        em.persist(campaign);
-        em.getTransaction().commit();
-        em.close();
+        try {
+            em.getTransaction().begin();
+            em.persist(campaign);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+
+        //try catch transaction ile yonetilmeli rollback
     }
 
     @Override
@@ -70,17 +78,20 @@ public class CampaignDAOImpl implements CampaignDAO {
         Campaign campaign1 = em.find(Campaign.class, id);
         em.getTransaction().begin();
 
-        campaign1.setStartDate(campaign.getStartDate());
-        campaign1.setEndDate(campaign.getEndDate());
-        campaign1.setCountControl(campaign.getCountControl());
-        campaign1.setCampaignOption(campaign.getCampaignOption());
-        campaign1.setType(campaign.getType());
-        campaign1.setCampaignName(campaign.getCampaignName());
-        campaign1.setDescription(campaign.getDescription());
-        campaign1.setModificationDate(campaign.getModificationDate());
-        campaign1.setCreationDate(campaign.getCreationDate());
-        campaign1.setVersion(campaign.getVersion());
+        campaign.setCampaignID(id);
+//
+//        campaign1.setStartDate(campaign.getStartDate());
+//        campaign1.setEndDate(campaign.getEndDate());
+//        campaign1.setCountControl(campaign.getCountControl());
+//        campaign1.setCampaignOption(campaign.getCampaignOption());
+//        campaign1.setType(campaign.getType());
+//        campaign1.setCampaignName(campaign.getCampaignName());
+//        campaign1.setDescription(campaign.getDescription());
+//        campaign1.setModificationDate(campaign.getModificationDate());
+//        campaign1.setCreationDate(campaign.getCreationDate());
+//        campaign1.setVersion(campaign.getVersion());
 
+        em.persist(campaign);
         em.getTransaction().commit();
 
         // campaign1.setCampaignName("example"); //runing

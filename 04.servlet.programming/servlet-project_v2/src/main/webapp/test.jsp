@@ -51,8 +51,8 @@
             <td>${campaign.creationDate}</td>
             <td>${campaign.modificationDate}</td>
             <td>${campaign.version}</td>
-            <td><a href="Update?campaignId=${campaign.campaignID}" >Update </a> </td>
-            <td><a href="Delete?campaignId=${campaign.campaignID}" >Delete</a> </td>
+            <td><a href="Update?campaignId=${campaign.campaignID}">Update </a></td>
+            <td><a href="Delete?campaignId=${campaign.campaignID}">Delete</a></td>
         </tr>
     </c:forEach>
 </table>

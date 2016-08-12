@@ -10,4 +10,5 @@ public interface CampaignDAO {
     void update(Campaign campaign);
     void delete(int campaignID);
     List<Campaign> select();
+    Campaign selectByID(int campaignID);
 }

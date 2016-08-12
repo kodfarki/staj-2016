@@ -11,7 +11,7 @@
     <title>Campaign Form</title>
 </head>
 <body>
-<form name="campaignForm" method="get" class="CampaignServlet" action="campaignServlet">
+<form name="campaignForm" method="post" class="CampaignServlet" action="campaignServlet">
 
     <table border="0" cellpadding=2 cellspacing="2">
         <tr>

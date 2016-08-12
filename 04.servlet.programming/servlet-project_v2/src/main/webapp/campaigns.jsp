@@ -10,10 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%
-    CampaignDAOImpl campaignDAO = new CampaignDAOImpl();
-    request.setAttribute("campaigns", campaignDAO.select());
-%>
+
 <html>
 <head>
     <title>Title</title>
@@ -51,10 +48,11 @@
             <td>${campaign.creationDate}</td>
             <td>${campaign.modificationDate}</td>
             <td>${campaign.version}</td>
-            <td><a href="Update?campaignId=${campaign.campaignID}" >Update </a> </td>
+            <td><a href="update?campaignId=${campaign.campaignID}" >Update </a> </td>
             <td><a href="Delete?campaignId=${campaign.campaignID}" >Delete</a> </td>
         </tr>
     </c:forEach>
+    <a href="CampaignForm.jsp">Add New Campaigns</a>
 </table>
 </body>
 </html>

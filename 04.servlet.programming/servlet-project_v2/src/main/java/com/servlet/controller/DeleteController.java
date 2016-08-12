@@ -1,5 +1,6 @@
 package com.servlet.controller;
 
+import com.servlet.dao.CampaignDAO;
 import com.servlet.dao.CampaignDAOImpl;
 
 import javax.servlet.ServletException;
@@ -15,11 +16,11 @@ import java.io.IOException;
 @WebServlet("/Delete")
 public class DeleteController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        CampaignDAOImpl campaignDAOImpl=new CampaignDAOImpl();
+        CampaignDAO campaignDAOImpl=new CampaignDAOImpl();
         int campaignId=Integer.parseInt(request.getParameter("campaignId"));
 
         campaignDAOImpl.delete(campaignId);
-        response.sendRedirect("campaigns.jsp");
+        response.sendRedirect("/campaignServlet");
     }
 
 }

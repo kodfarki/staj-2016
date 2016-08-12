@@ -30,9 +30,10 @@ public class Main {
         campaign1.setVersion(4);
 
 
-        //campaignDAO.insert(campaign1);
+        campaignDAO.insert(campaign1);
         //campaignDAO.read();
         // campaignDAO.update(1012,campaign1);
+
         // campaignDAO.update2(1012,campaign1);
         // campaignDAO.delete(5);
 
