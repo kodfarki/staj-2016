@@ -38,9 +38,9 @@
                 Type<font color="red">(*)</font></td>
             <td>
                 <select name="type" style="background-color:#EEF7FF;" required>
-                    <option>0 - NON-RECURRING</option>
-                    <option>1 - NON-RECURRING</option>
-                    <option>2 - NON-RECURRING</option>
+                    <option value="0">0 - NON-RECURRING</option>
+                    <option value="1">1 - NON-RECURRING</option>
+                    <option value="2">2 - NON-RECURRING</option>
                 </select>
             </td>
         </tr>
@@ -56,10 +56,10 @@
             <td align="right">Option <font color="red">(*)</font></td>
             <td>
                 <select name="countOption" style="background-color:#EEF7FF;" required>
-                    <option>0 - SCHEDULE</option>
-                    <option>1 - SCHEDULE</option>
-                    <option>2 - SCHEDULE</option>
-                    <option>3 - SCHEDULE</option>
+                    <option value="0">0 - SCHEDULE</option>
+                    <option value="1">1 - SCHEDULE</option>
+                    <option value="2">2 - SCHEDULE</option>
+                    <option value="3">3 - SCHEDULE</option>
                 </select>
             </td>
         </tr>

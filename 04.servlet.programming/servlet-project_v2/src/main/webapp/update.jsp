@@ -1,7 +1,7 @@
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="com.servlet.util.JDBCUtil" %>
 <%@ page import="java.sql.ResultSet" %>
-<%@ page import="com.servlet.controller.Servlet_2" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: GUNEY
   Date: 3.08.2016

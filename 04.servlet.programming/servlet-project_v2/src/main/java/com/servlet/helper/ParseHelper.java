@@ -8,7 +8,7 @@ import java.util.Date;
 public class ParseHelper {
 
     public static java.sql.Date parseDate(String string){
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-YYYY");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/YYYY");
         Date parsed = null;
         java.sql.Date date;
 

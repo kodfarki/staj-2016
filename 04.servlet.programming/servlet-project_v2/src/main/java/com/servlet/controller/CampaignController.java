@@ -15,12 +15,7 @@ import java.io.IOException;
 @WebServlet(name = "campaignServlet", urlPatterns = {"/campaignServlet"})
 public class CampaignController extends HttpServlet{
 
-    private CampaignDAOImpl campaignDAO;
-
-    public CampaignController(){
-        super();
-        campaignDAO = new CampaignDAOImpl();
-    }
+    private CampaignDAOImpl campaignDAO = new CampaignDAOImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,10 +27,10 @@ public class CampaignController extends HttpServlet{
         campaign.setCampaignName(request.getParameter("name"));
         campaign.setExternalCampaignID(ParseHelper.parseInteger(request.getParameter("externalCampaignId")));
         campaign.setStartDate(ParseHelper.parseDate(request.getParameter("startDate")));
-        campaign.setType(Character.getNumericValue(request.getParameter("type").charAt(0)));
+        campaign.setType(Integer.parseInt(request.getParameter("type")));
         campaign.setEndDate(ParseHelper.parseDate(request.getParameter("endDate")));
         campaign.setCountControl(ParseHelper.parseInteger(request.getParameter("countControl")));
-        campaign.setCampaignOption(Character.getNumericValue(request.getParameter("countOption").charAt(0)));
+        campaign.setCampaignOption(Integer.parseInt(request.getParameter("countOption")));
         campaign.setDescription(request.getParameter("description"));
 
         campaignDAO.insert(campaign);
