@@ -6,10 +6,12 @@ import com.servlet.util.JDBCUtil;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CampaignDAOImpl implements CampaignDAO {
+
 
     private List<Campaign> campaignList;
 
@@ -140,6 +142,39 @@ public class CampaignDAOImpl implements CampaignDAO {
         }
 
        return campaignList;
+    }
+
+    @Override
+    public Campaign selectByID(int campaignID){
+        String query = "SELECT * FROM SLCM.CAMPAIGN WHERE CAMPAIGN_ID = ?";
+
+        Campaign campaign = new Campaign();
+
+        try{
+            PreparedStatement preparedStatement = JDBCUtil.getConnection().prepareStatement(query);
+            preparedStatement.setInt(1, campaignID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()){
+                campaign.setCampaignID(resultSet.getInt(1));
+                campaign.setExternalCampaignID(resultSet.getInt(2));
+                campaign.setStartDate(resultSet.getDate(3));
+                campaign.setEndDate(resultSet.getDate(4));
+                campaign.setCountControl(resultSet.getInt(5));
+                campaign.setCampaignOption(resultSet.getInt(6));
+                campaign.setType(resultSet.getInt(7));
+                campaign.setCampaignName(resultSet.getString(8));
+                campaign.setDescription(resultSet.getString(9));
+                campaign.setCreationDate(resultSet.getDate(10));
+                campaign.setModificationDate(resultSet.getDate(11));
+                campaign.setVersion(resultSet.getInt(12));
+            }
+        } catch (Exception exception){
+            exception.printStackTrace();
+        }
+
+        return campaign;
     }
 
     public void close(){

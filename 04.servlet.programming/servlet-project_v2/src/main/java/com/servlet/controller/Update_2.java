@@ -19,7 +19,7 @@ import java.util.Date;
  * Created by GUNEY on 5.08.2016.
  */
 @WebServlet("/update")
-public class Update extends HttpServlet {
+public class Update_2 extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         //selected the campaignId
@@ -32,12 +32,12 @@ public class Update extends HttpServlet {
         String description = request.getParameter("description");
 
         int externalCampaignID = 0;
-        if (Servlet.isInteger(request.getParameter("externalCampaignId"))) {
+        if (Servlet_2.isInteger(request.getParameter("externalCampaignId"))) {
             externalCampaignID = Integer.parseInt(request.getParameter("externalCampaignId"));
         }
 
         int countControl = 0;
-        if (Servlet.isInteger(request.getParameter("countControl"))) {
+        if (Servlet_2.isInteger(request.getParameter("countControl"))) {
             countControl = Integer.parseInt(request.getParameter("countControl"));
         }
 
