@@ -4,14 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
   <display-name>Archetype Created Web Application</display-name>
-  
-  <servlet>
-    <servlet-name>ServletProject</servlet-name>
-    <servlet-class>controlller.Campaign</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ServletProject</servlet-name>
-    <url-pattern>/mzg</url-pattern>
-  </servlet-mapping>
+
+
 </web-app>
 

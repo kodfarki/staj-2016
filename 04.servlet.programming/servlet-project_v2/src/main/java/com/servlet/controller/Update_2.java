@@ -1,5 +1,6 @@
 package com.servlet.controller;
 
+import com.servlet.helper.ParseHelper;
 import com.servlet.util.JDBCUtil;
 
 import javax.servlet.ServletException;
@@ -32,12 +33,12 @@ public class Update_2 extends HttpServlet {
         String description = request.getParameter("description");
 
         int externalCampaignID = 0;
-        if (Servlet_2.isInteger(request.getParameter("externalCampaignId"))) {
+        if (ParseHelper.isInteger(request.getParameter("externalCampaignId"))) {
             externalCampaignID = Integer.parseInt(request.getParameter("externalCampaignId"));
         }
 
         int countControl = 0;
-        if (Servlet_2.isInteger(request.getParameter("countControl"))) {
+        if (ParseHelper.isInteger(request.getParameter("countControl"))) {
             countControl = Integer.parseInt(request.getParameter("countControl"));
         }
 

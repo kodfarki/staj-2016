@@ -46,7 +46,7 @@ public class CampaignDAOImpl implements CampaignDAO {
     }
 
     @Override
-    public void update(Campaign campaign, int campaignID) {
+    public void update(Campaign campaign) {
         String query = "UPDATE SLCM_CAMPAIGN SET START_DATE = ?, END_DATE= ?, COUNT_CONTROL= ?, CAMPAIGN_OPTION= ?, SLCM_CAMPAIGN.TYPE=? , CAMPAIGN_NAME= ?, DESCRIPTION= ?, CREATION_DATE= ?, MODIFICATION_DATE= ?, VERSION= ? WHERE CAMPAIGN_ID= ?";
 
         try {
@@ -61,7 +61,7 @@ public class CampaignDAOImpl implements CampaignDAO {
             preparedStatement.setTimestamp(8, new java.sql.Timestamp(campaign.getCreationDate().getTime()));
             preparedStatement.setTimestamp(9, new java.sql.Timestamp(campaign.getModificationDate().getTime()));
             preparedStatement.setInt(10, campaign.getVersion());
-            preparedStatement.setInt(11, campaignID);
+            preparedStatement.setInt(11, campaign.getCampaignID());
 
             int i = preparedStatement.executeUpdate();
             if (i > 0) {
@@ -86,15 +86,10 @@ public class CampaignDAOImpl implements CampaignDAO {
             PreparedStatement preparedStatement = JDBCUtil.getConnection().prepareStatement(query);
             preparedStatement.setInt(1,campaignID);
 
-            for (int i = 0; i < campaignList.size(); i++) {
-                if (campaignList.get(i).getCampaignID() == campaignID) {
-                    campaignList.remove(campaignList.get(i));
-                }
-            }
-
             int i = preparedStatement.executeUpdate();
             if (i > 0) {
                 System.out.println("Deleted the Campaign Object successfully!");
+
             } else {
                 System.out.println("Failed on deleting this object ..");
             }
@@ -142,39 +137,6 @@ public class CampaignDAOImpl implements CampaignDAO {
         }
 
        return campaignList;
-    }
-
-    @Override
-    public Campaign selectByID(int campaignID){
-        String query = "SELECT * FROM SLCM.CAMPAIGN WHERE CAMPAIGN_ID = ?";
-
-        Campaign campaign = new Campaign();
-
-        try{
-            PreparedStatement preparedStatement = JDBCUtil.getConnection().prepareStatement(query);
-            preparedStatement.setInt(1, campaignID);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if(resultSet.next()){
-                campaign.setCampaignID(resultSet.getInt(1));
-                campaign.setExternalCampaignID(resultSet.getInt(2));
-                campaign.setStartDate(resultSet.getDate(3));
-                campaign.setEndDate(resultSet.getDate(4));
-                campaign.setCountControl(resultSet.getInt(5));
-                campaign.setCampaignOption(resultSet.getInt(6));
-                campaign.setType(resultSet.getInt(7));
-                campaign.setCampaignName(resultSet.getString(8));
-                campaign.setDescription(resultSet.getString(9));
-                campaign.setCreationDate(resultSet.getDate(10));
-                campaign.setModificationDate(resultSet.getDate(11));
-                campaign.setVersion(resultSet.getInt(12));
-            }
-        } catch (Exception exception){
-            exception.printStackTrace();
-        }
-
-        return campaign;
     }
 
     public void close(){
