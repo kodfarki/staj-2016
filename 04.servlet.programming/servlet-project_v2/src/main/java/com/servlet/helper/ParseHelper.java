@@ -17,7 +17,6 @@ public class ParseHelper {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        date = new java.sql.Date(parsed.getTime());
 
         if(parsed == null){
             date  = null;
@@ -26,6 +25,18 @@ public class ParseHelper {
         }
 
         return date;
+    }
+
+    public static int parseInteger(String string){
+        int value;
+
+        if(isInteger(string)){
+            value = Integer.parseInt(string);
+        } else {
+            value = 0;
+        }
+
+        return value;
     }
 
     public static boolean isInteger(String string) {

@@ -25,7 +25,7 @@ public class JDBCUtil {
     private JDBCUtil() {
 
         try {
-            input = new FileInputStream("C:\\Users\\GUNEY\\Desktop\\staj-2016\\04.servlet.programming\\servlet-project_v2\\config.properties");
+            input = new FileInputStream("/Users/hamitsarac/projects/staj-2016/04.servlet.programming/servlet-project_v2/config.properties");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
