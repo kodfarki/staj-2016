@@ -1,2 +1,0 @@
-http://www.coderpanda.com/jpa-update-query-example/
-http://howtodoinjava.com/jpa/jpa-native-update-sql-query-example/

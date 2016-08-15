@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
 
-    <persistence-unit name="Mzg">
-        <class>org.hibernate.zahit.model.Campaign</class>
+    <persistence-unit name="Persistence">
+        <class>org.hibernate.mustafa.model.Campaign</class>
 
         <properties>
             <property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
             <property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"/>
-            <property name="hibernate.connection.username" value="mzgg"/>
-            <property name="hibernate.connection.password" value="1"/>
+            <property name="hibernate.connection.username" value="mustafa"/>
+            <property name="hibernate.connection.password" value="sento"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
             <property name="hbm2ddl.auto" value="update"/>
