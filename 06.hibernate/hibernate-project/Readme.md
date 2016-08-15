@@ -14,8 +14,8 @@ A simple JPA & JDBC project that makes insertion, update, deletion, and selectio
 We've configured the information about the database, such as _driver class_, _url_, _username_, and _password_. You can change these configurations by **persistence.xml** file under the resources directory.
 
 <br>
-**References**
-[http://www.objectdb.com/java/jpa/persistence/crud]
-[http://www.coderpanda.com/jpa-update-query-example/]
-[http://www.thejavageek.com/2014/01/12/jpa-crud-example/]
-[http://howtodoinjava.com/jpa/jpa-native-update-sql-query-example/]
+**References** <br>
+http://www.objectdb.com/java/jpa/persistence/crud <br>
+http://www.coderpanda.com/jpa-update-query-example/ <br>
+http://www.thejavageek.com/2014/01/12/jpa-crud-example/ <br>
+http://howtodoinjava.com/jpa/jpa-native-update-sql-query-example/ <br>
