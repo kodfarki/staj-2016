@@ -1,6 +1,5 @@
 package com.servlet.controller;
 
-
 import com.servlet.dao.CampaignDAO;
 import com.servlet.dao.CampaignDAOImpl;
 import com.servlet.helper.ParseHelper;
@@ -24,24 +23,20 @@ public class CampaignController extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/plain");
 
-
         List<Campaign> select = campaignDAO.select();
         request.setAttribute("campaigns", select);
-        // ctrl +alt +v
+
         RequestDispatcher view = request.getRequestDispatcher("campaigns.jsp");
         view.forward(request, response);
-
-
     }
 
-
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         Campaign campaign = new Campaign();
 
         // The fields for data that is requested from 'CampaignForm.jsp'
         campaign.setCampaignName(request.getParameter("name"));
-        campaign.setExternalCampaignID(ParseHelper.parseInteger(request.getParameter("externalCampaignId")));
+        campaign.setExternalCampaignID(String.valueOf(ParseHelper.parseInteger(request.getParameter("externalCampaignId"))));
         campaign.setStartDate(ParseHelper.parseDate(request.getParameter("startDate")));
         campaign.setType(Integer.parseInt(request.getParameter("type")));
         campaign.setEndDate(ParseHelper.parseDate(request.getParameter("endDate")));
@@ -51,7 +46,6 @@ public class CampaignController extends HttpServlet{
 
         campaignDAO.insert(campaign);
         response.sendRedirect("campaignServlet");
-
     }
 
 }

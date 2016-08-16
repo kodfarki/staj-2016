@@ -82,7 +82,8 @@ public class CampaignDAOImpl implements CampaignDAO {
         List<Campaign> campaignList = new ArrayList<Campaign>();
 
         try {
-            campaignList = entityManager.createQuery("SELECT campaign FROM Campaign campaign", Campaign.class).getResultList();
+            campaignList = entityManager.createQuery(
+                    "SELECT campaign FROM Campaign campaign", Campaign.class).getResultList();
         } catch (Exception exception) {
             exception.printStackTrace();
             entityManager.getTransaction().rollback();

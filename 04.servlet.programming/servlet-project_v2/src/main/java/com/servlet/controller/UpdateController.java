@@ -1,6 +1,5 @@
 package com.servlet.controller;
 
-
 import com.servlet.dao.CampaignDAOImpl;
 import com.servlet.helper.ParseHelper;
 import com.servlet.model.Campaign;
@@ -23,10 +22,8 @@ public class UpdateController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/plain");
-
         CampaignDAOImpl campaignDAOImpl = new CampaignDAOImpl();
         int campaignId = Integer.parseInt(request.getParameter("campaignId"));
-
         List<Campaign> c = new ArrayList<>();
 
         Campaign c1 = campaignDAOImpl.selectByID(campaignId);
@@ -35,16 +32,16 @@ public class UpdateController extends HttpServlet {
         request.setAttribute("camp", c);
         RequestDispatcher view = request.getRequestDispatcher("update.jsp");
         view.forward(request, response);
-
     }
-@Override
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Campaign campaign = new Campaign();
 
         // The fields for data that is requested from 'CampaignForm.jsp'
         campaign.setCampaignName(request.getParameter("name"));
-        campaign.setExternalCampaignID(ParseHelper.parseInteger(request.getParameter("externalCampaignId")));
+        campaign.setExternalCampaignID(request.getParameter("externalCampaignId"));
         campaign.setStartDate(ParseHelper.parseDate(request.getParameter("startDate")));
         campaign.setType(Integer.parseInt(request.getParameter("type")));
         campaign.setEndDate(ParseHelper.parseDate(request.getParameter("endDate")));
@@ -55,7 +52,5 @@ public class UpdateController extends HttpServlet {
 
         campaignDAO.update(campaign);
         response.sendRedirect("campaignServlet");
-
-
     }
 }
