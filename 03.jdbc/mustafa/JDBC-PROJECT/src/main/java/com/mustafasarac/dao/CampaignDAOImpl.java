@@ -1,29 +1,14 @@
-package com.mustafasarac.query;
+package com.mustafasarac.dao;
 
 import com.mustafasarac.model.Campaign;
 import com.mustafasarac.util.DatabaseConnection;
 
 import java.sql.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Date;
 
-/**
- * Created by mustafasarac on 31.07.2016.
- */
-
-public class DatabaseQuery implements Query {
-
-    // Campaign object and a Collection that stores Campaign objects
-    protected static List<Campaign> campaignList;
-
-    //  Getting the database connection
-    public void connect() {
-        DatabaseConnection.getConnection();
-        System.out.println("\nConnected database successfully...");
-    }
+public class CampaignDAOImpl implements CampaignDAO {
 
     //  Inserting into the Database table
     public void insert(Campaign campaign) {
@@ -32,17 +17,17 @@ public class DatabaseQuery implements Query {
         try {
             String sqlInsertQuery = "INSERT INTO SLCM_CAMPAIGN VALUES (SEQ_SLCM_DEFAULT.NEXTVAL,SEQ_SLCM_DEFAULT.NEXTVAL,?,?,?,?,?,?,?,?,?,?)";
 
-            PreparedStatement preparedStatement = DatabaseConnection.connection.prepareStatement(sqlInsertQuery);
+            PreparedStatement preparedStatement = DatabaseConnection.getConnection().prepareStatement(sqlInsertQuery);
 
-            preparedStatement.setDate(1, campaign.getStartDate());
-            preparedStatement.setDate(2, campaign.getEndDate());
+            preparedStatement.setDate(1, new java.sql.Date(campaign.getStartDate().getTime()));
+            preparedStatement.setDate(2, new java.sql.Date(campaign.getEndDate().getTime()));
             preparedStatement.setInt(3, campaign.getCountControl());
             preparedStatement.setInt(4, campaign.getCampaignOption());
             preparedStatement.setInt(5, campaign.getType());
             preparedStatement.setString(6, campaign.getCampaignName());
             preparedStatement.setString(7, campaign.getDescription());
-            preparedStatement.setTimestamp(8, campaign.getCreationDate());
-            preparedStatement.setTimestamp(9, campaign.getModificationDate());
+            preparedStatement.setTimestamp(8, new java.sql.Timestamp(campaign.getCreationDate().getTime()));
+            preparedStatement.setTimestamp(9, new java.sql.Timestamp(campaign.getModificationDate().getTime()));
             preparedStatement.setInt(10, campaign.getVersion());
 
             int i = preparedStatement.executeUpdate();
@@ -54,17 +39,6 @@ public class DatabaseQuery implements Query {
 
             preparedStatement.close();
 
-            String sqlQuery = "SELECT CAMPAIGN_ID FROM SLCM_CAMPAIGN";
-            PreparedStatement statement = DatabaseConnection.connection.prepareStatement(sqlQuery);
-            ResultSet resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                campaign.setCampaignID(resultSet.getInt(1));
-                campaign.setExternalCampaignID(resultSet.getInt(1));
-            }
-
-            statement.close();
-
         } catch (SQLException exception) {
             // log the exception
             exception.printStackTrace();
@@ -72,25 +46,25 @@ public class DatabaseQuery implements Query {
     }
 
     // Updating data from the Database table
-    public void update(Campaign campaign) {
+    public void update(Campaign campaign, int campaignID) {
         System.out.println("\nDatabaseQuery.update");
 
         try {
             String sqlQuery = "UPDATE SLCM_CAMPAIGN SET START_DATE = ?, END_DATE= ?, COUNT_CONTROL= ?, CAMPAIGN_OPTION= ?, SLCM_CAMPAIGN.TYPE=? , CAMPAIGN_NAME= ?, DESCRIPTION= ?, CREATION_DATE= ?, MODIFICATION_DATE= ?, VERSION= ? WHERE CAMPAIGN_ID= ?";
-            PreparedStatement preparedStatement = DatabaseConnection.connection.prepareStatement(sqlQuery);
+            PreparedStatement preparedStatement = DatabaseConnection.getConnection().prepareStatement(sqlQuery);
 
             // setting parameters
-            preparedStatement.setDate(1, campaign.getStartDate());
-            preparedStatement.setDate(2, campaign.getEndDate());
+            preparedStatement.setDate(1, new java.sql.Date(campaign.getStartDate().getTime()));
+            preparedStatement.setDate(2, new java.sql.Date(campaign.getEndDate().getTime()));
             preparedStatement.setInt(3, campaign.getCountControl());
             preparedStatement.setInt(4, campaign.getCampaignOption());
             preparedStatement.setInt(5, campaign.getType());
             preparedStatement.setString(6, campaign.getCampaignName());
             preparedStatement.setString(7, campaign.getDescription());
-            preparedStatement.setTimestamp(8, campaign.getCreationDate());
-            preparedStatement.setTimestamp(9, campaign.getModificationDate());
+            preparedStatement.setTimestamp(8, new java.sql.Timestamp(campaign.getCreationDate().getTime()));
+            preparedStatement.setTimestamp(9, new java.sql.Timestamp(campaign.getModificationDate().getTime()));
             preparedStatement.setInt(10, campaign.getVersion());
-            preparedStatement.setInt(11, campaign.getCampaignID());
+            preparedStatement.setInt(11, campaignID);
 
             int i = preparedStatement.executeUpdate();
             if (i > 0) {
@@ -108,19 +82,13 @@ public class DatabaseQuery implements Query {
     }
 
     //  Deleting a row of data with specified campaignID from the Database table
-    public void delete(Campaign campaign) {
+    public void delete(int campaignID) {
         System.out.println("\nDatabaseQuery.delete");
 
         try {
             String sqlQuery = "DELETE FROM SLCM_CAMPAIGN WHERE CAMPAIGN_ID = ?";
-            PreparedStatement preparedStatement = DatabaseConnection.connection.prepareStatement(sqlQuery);
-            preparedStatement.setInt(1, campaign.getCampaignID());
-
-            for (int i = 0; i < campaignList.size(); i++) {
-                if (campaignList.get(i).getCampaignID() == campaign.getCampaignID()) {
-                    campaignList.remove(campaignList.get(i));
-                }
-            }
+            PreparedStatement preparedStatement = DatabaseConnection.getConnection().prepareStatement(sqlQuery);
+            preparedStatement.setInt(1, campaignID);
 
             int i = preparedStatement.executeUpdate();
             if (i > 0) {
@@ -141,33 +109,44 @@ public class DatabaseQuery implements Query {
     public List<Campaign> select() {
         System.out.println("\nDatabaseQuery.select");
 
-        campaignList = new LinkedList<Campaign>();
+        List<Campaign> campaignList = new LinkedList<Campaign>();
 
         try{
             // inserting this Campaign Object to List<Campaign>
             String sqlQuery = "SELECT * FROM SLCM_CAMPAIGN";
-            PreparedStatement  statement = DatabaseConnection.connection.prepareStatement(sqlQuery);
+            PreparedStatement  statement = DatabaseConnection.getConnection().prepareStatement(sqlQuery);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                Campaign myCampaign;
+                Campaign campaign = new Campaign();
 
                 int myCampaignID = resultSet.getInt(1);
-                int myExternalCampaignID = resultSet.getInt(2);
-                java.sql.Date myStartDate = resultSet.getDate(3);
-                java.sql.Date myEndDate = resultSet.getDate(4);
+                String myExternalCampaignID = resultSet.getString(2);
+                Date myStartDate = resultSet.getDate(3);
+                Date myEndDate = resultSet.getDate(4);
                 int myCountControl = resultSet.getInt(5);
                 int myCampaignOption = resultSet.getInt(6);
                 int myType = resultSet.getInt(7);
                 String myCampaignName = resultSet.getString(8);
                 String myDescription = resultSet.getString(9);
-                Timestamp myCreationDate = resultSet.getTimestamp(10);
-                Timestamp myModificationDate = resultSet.getTimestamp(11);
+                Date myCreationDate = resultSet.getTimestamp(10);
+                Date myModificationDate = resultSet.getTimestamp(11);
                 int myVersion = resultSet.getInt(12);
 
-                myCampaign = new Campaign(myCampaignID, myExternalCampaignID, myStartDate, myEndDate, myCountControl, myCampaignOption, myType, myCampaignName, myDescription, myCreationDate, myModificationDate, myVersion);
+                campaign.setCampaignID(myCampaignID);
+                campaign.setExternalCampaignID(myExternalCampaignID);
+                campaign.setStartDate(myStartDate);
+                campaign.setEndDate(myEndDate);
+                campaign.setCountControl(myCountControl);
+                campaign.setCampaignOption(myCampaignOption);
+                campaign.setType(myType);
+                campaign.setCampaignName(myCampaignName);
+                campaign.setDescription(myDescription);
+                campaign.setCreationDate(myCreationDate);
+                campaign.setModificationDate(myModificationDate);
+                campaign.setVersion(myVersion);
 
-                campaignList.add(myCampaign);
+                campaignList.add(campaign);
             }
         } catch (SQLException exception){
             exception.printStackTrace();
@@ -178,42 +157,9 @@ public class DatabaseQuery implements Query {
     }
 
     //  Closing the database connection
-    public void close() {
+    public void closeConnection() {
         DatabaseConnection.closeConnection();
         System.out.println("\nConnection closed ...");
-    }
-
-    // Converting String to sql.DATE Format
-    public java.sql.Date getDate(String string) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date parsedDate = null;
-        java.sql.Date startDate;
-
-        try {
-            parsedDate = simpleDateFormat.parse(string);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        startDate = new java.sql.Date(parsedDate.getTime());
-
-        return startDate;
-    }
-
-    // Converting String to sql.Timestamp Format
-    public java.sql.Timestamp getTimestamp(String string) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-
-        Date parsedDate = null;
-        java.sql.Timestamp timestamp;
-
-        try {
-            parsedDate = simpleDateFormat.parse(string);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        timestamp = new java.sql.Timestamp(parsedDate.getTime());
-
-        return timestamp;
     }
 
 }
