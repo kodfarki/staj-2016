@@ -6,12 +6,26 @@ A simple JPA & JDBC project that makes insertion, update, deletion, and selectio
 
 #Instructions for the Project
 
+In **persistence.xml** under the resources directory,
+
 **External JARS** 
 
  + Used **Oracle JDBC Driver 10.2.0.4** for Database Connection 
  + Used **Hibernate Core 5.2.1.Final** for making the software development independent of the database.
 
-We've configured the information about the database, such as _driver class_, _url_, _username_, and _password_. You can change these configurations by **persistence.xml** file under the resources directory.
+We've configured the information about the database, such as _driver class_, _url_, _username_, and _password_. You can change these configurations by **persistence.xml** file under the resources directory. 
+
+In addition to these, in **persistence.xml** we've defined **hbm2ddl.auto** configuration property as the following:
+```
+<property name="hbm2ddl.auto" value="update"/>
+```
+which updates the schema to reflect the entities being persisted.
+
+As a reminder, for hbm2ddl.auto property the list of possible options is:
+ + **validate:** validate that the schema matches, make no changes to the schema of the database.
+ + **update:** update the schema to reflect the entities being persisted
+ + **create:** creates the schema necessary for your entities, destroying any previous data.
+ + **create-drop:** create the schema as in create above, but also drop the schema at the end of the session. Great for testing.
 
 <br>
 **References** <br>
