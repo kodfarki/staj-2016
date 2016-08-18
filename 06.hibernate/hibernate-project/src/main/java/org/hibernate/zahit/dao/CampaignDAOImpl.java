@@ -39,6 +39,7 @@ public class CampaignDAOImpl implements CampaignDAO {
     @Override
     public void update(long id, Campaign campaign) {
         EntityManager em = JPAUtil.getEmf().createEntityManager();
+
         EntityTransaction updateTransaction = em.getTransaction();
         updateTransaction.begin();
         Query query = em.createNamedQuery("update");
@@ -76,6 +77,7 @@ public class CampaignDAOImpl implements CampaignDAO {
 
         EntityManager em = JPAUtil.getEmf().createEntityManager();
         Campaign campaign1 = em.find(Campaign.class, id);
+
         em.getTransaction().begin();
 
         campaign.setCampaignID(id);

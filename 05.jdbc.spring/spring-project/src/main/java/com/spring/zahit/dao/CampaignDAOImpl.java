@@ -4,10 +4,7 @@ import com.spring.zahit.model.Campaign;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,15 +32,15 @@ public class CampaignDAOImpl implements CampaignDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
             preparedStatement.setString(1, "1"); //campaign.setExternalCampaignID() foreign key
-            preparedStatement.setDate(2, campaign.getStartDate());
-            preparedStatement.setDate(3, campaign.getEndDate());
+            preparedStatement.setDate(2, (Date) campaign.getStartDate());
+            preparedStatement.setDate(3, (java.sql.Date) campaign.getEndDate());
             preparedStatement.setInt(4, campaign.getCountControl());
             preparedStatement.setInt(5, campaign.getCampaignOption());
             preparedStatement.setInt(6, campaign.getType());
             preparedStatement.setString(7, campaign.getCampaignName());
             preparedStatement.setString(8, campaign.getDescription());
-            preparedStatement.setTimestamp(9, campaign.getCreationDate());
-            preparedStatement.setTimestamp(10, campaign.getModificationDate());
+            preparedStatement.setTimestamp(9, (java.sql.Timestamp) campaign.getCreationDate());
+            preparedStatement.setTimestamp(10, (java.sql.Timestamp) campaign.getModificationDate());
             preparedStatement.setInt(11, campaign.getVersion());
 
 
@@ -52,8 +49,8 @@ public class CampaignDAOImpl implements CampaignDAO {
             else
                 System.out.println("Kayıt Ekleme Başarısız");
         } catch (Exception e) {
-            throw new RuntimeException(e);
-
+            //  throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
     }
@@ -65,18 +62,18 @@ public class CampaignDAOImpl implements CampaignDAO {
             String query = "UPDATE SLCM_CAMPAIGN SET START_DATE = ?, END_DATE= ?, COUNT_CONTROL= ?, CAMPAIGN_OPTION= ?, SLCM_CAMPAIGN.TYPE=? , CAMPAIGN_NAME= ?, DESCRIPTION= ?, CREATION_DATE= ?, MODIFICATION_DATE= ?, VERSION= ? WHERE CAMPAIGN_ID= ?";
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setDate(1, campaign.getStartDate());
-            preparedStatement.setDate(2, campaign.getEndDate());
+            preparedStatement.setDate(1, (Date) campaign.getStartDate());
+            preparedStatement.setDate(2, (Date) campaign.getEndDate());
             preparedStatement.setInt(3, campaign.getCountControl());
             preparedStatement.setInt(4, campaign.getCampaignOption());
             preparedStatement.setInt(5, campaign.getType());
             preparedStatement.setString(6, campaign.getCampaignName());
             preparedStatement.setString(7, campaign.getDescription());
-            preparedStatement.setTimestamp(8, campaign.getCreationDate());
-            preparedStatement.setTimestamp(9, campaign.getModificationDate());
+            preparedStatement.setTimestamp(8, (Timestamp) campaign.getCreationDate());
+            preparedStatement.setTimestamp(9, (Timestamp) campaign.getModificationDate());
             preparedStatement.setInt(10, campaign.getVersion());
 
-            preparedStatement.setLong(11,campaign.getCampaignID());
+            preparedStatement.setLong(11, campaign.getCampaignID());
 
 
             int i = preparedStatement.executeUpdate();

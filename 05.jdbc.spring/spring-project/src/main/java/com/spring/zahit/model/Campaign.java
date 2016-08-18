@@ -1,6 +1,6 @@
 package com.spring.zahit.model;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.util.Date;
+
 /**
  * Created by GUNEY on 8.08.2016.
  */
@@ -14,8 +14,8 @@ public class Campaign {
     private int type;
     private String campaignName;
     private String description;
-    private Timestamp creationDate;
-    private Timestamp modificationDate;
+    private Date creationDate;
+    private Date modificationDate;
     private int version;
 
     public long getCampaignID() {
@@ -90,19 +90,19 @@ public class Campaign {
         this.description = description;
     }
 
-    public Timestamp getCreationDate() {
+    public Date getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Timestamp creationDate) {
+    public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
 
-    public Timestamp getModificationDate() {
+    public Date getModificationDate() {
         return modificationDate;
     }
 
-    public void setModificationDate(Timestamp modificationDate) {
+    public void setModificationDate(Date modificationDate) {
         this.modificationDate = modificationDate;
     }
 
