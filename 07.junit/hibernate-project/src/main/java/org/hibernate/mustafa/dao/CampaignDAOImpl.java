@@ -83,7 +83,7 @@ public class CampaignDAOImpl implements CampaignDAO {
 
         try {
             campaignList = entityManager.createQuery(
-                    "SELECT campaign FROM Campaign campaign", Campaign.class).getResultList();
+                    "SELECT c FROM Campaign c", Campaign.class).getResultList();
         } catch (Exception exception) {
             exception.printStackTrace();
             entityManager.getTransaction().rollback();
@@ -93,6 +93,26 @@ public class CampaignDAOImpl implements CampaignDAO {
 
         System.out.println(campaignList);
         return campaignList;
+    }
+
+    @Override
+    public Campaign selectById(int campaignId){
+        EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+        Campaign campaign = new Campaign();
+
+        try{
+             campaign = entityManager.createQuery(
+                    "SELECT c FROM Campaign c WHERE c.campaignID = :campaignId", Campaign.class)
+                    .setParameter("campaignId", campaignId)
+                    .getSingleResult();
+        } catch (Exception exception){
+            exception.printStackTrace();
+            entityManager.getTransaction().rollback();
+        } finally {
+            entityManager.close();
+        }
+
+        return campaign;
     }
 
 }

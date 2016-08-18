@@ -9,4 +9,5 @@ public interface CampaignDAO {
     void update(Campaign campaign, int campaignID);
     void delete(int campaignID);
     List<Campaign> select();
+    Campaign selectById(int campaignId);
 }
