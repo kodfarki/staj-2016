@@ -15,12 +15,12 @@ import java.io.IOException;
  */
 @WebServlet("/Delete")
 public class DeleteController extends HttpServlet {
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        CampaignDAO campaignDAOImpl=new CampaignDAOImpl();
-        int campaignId=Integer.parseInt(request.getParameter("campaignId"));
+        CampaignDAO campaignDAOImpl = new CampaignDAOImpl();
+        int campaignId = Integer.parseInt(request.getParameter("campaignId"));
 
         campaignDAOImpl.delete(campaignId);
         response.sendRedirect("/campaignServlet");
     }
-
 }

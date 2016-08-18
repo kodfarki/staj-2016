@@ -1,5 +1,6 @@
 package com.spring;
 
+import com.spring.dao.CampaignDAO;
 import com.spring.dao.CampaignDAOImpl;
 import com.spring.model.Campaign;
 import org.springframework.context.ApplicationContext;
@@ -20,13 +21,13 @@ public class Main {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
 
         // Getting Spring Bean and Database Connection
-        CampaignDAOImpl campaignDAO = (CampaignDAOImpl) context.getBean("campaign");
+        CampaignDAO campaignDAO = (CampaignDAOImpl) context.getBean("campaign");
 
         // Campaign Object Creation
         // 1000 which represents the CampaignID and ExternalCampaignId is just for
         // filling the field in Construction. When it is inserting into the Database Table,
         // it gets a value from the Database Sequence.
-        Campaign campaign = new Campaign(new Date(), new Date(), 1, 2, 1, "Campaign_1", "First Campaign in Database Table", new Date(), new Date(), 1);
+        Campaign campaign = new Campaign(new Date(), new Date(), 1, 2, 1, "Campaign_One", "First Campaign in Database Table", new Date(), new Date(), 1);
 
         // INSERT: inserting this Campaign Object into the table
         campaignDAO.insert(campaign);
@@ -39,12 +40,12 @@ public class Main {
         campaign.setCountControl(2);
         campaign.setCampaignOption(1);
         campaign.setType(2);
-        campaignDAO.update(campaign, 1001);
+        campaignDAO.update(campaign, 1060);
 
         // READ: reading these objects from Database Table
         campaignDAO.select();
 
         // DELETE: deleting the object from Database Table
-        campaignDAO.delete(1000);
+        campaignDAO.delete(1040);
     }
 }

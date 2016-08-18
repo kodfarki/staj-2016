@@ -8,13 +8,13 @@ import java.util.Date;
 public class Campaign {
 
     @Id
-    @Column(name = "CAMPAIGN_ID")
     @SequenceGenerator(name = "SEQ_GEN", sequenceName = "SEQ_SLCM_DEFAULT", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GEN")
+    @Column(name = "CAMPAIGN_ID")
     private int campaignID;
 
     @Column(name = "EXTERNAL_CAMPAIGN_ID")
-    private int externalCampaignID;
+    private String externalCampaignID;
 
     @Column(name = "START_DATE")
     private Date startDate;
@@ -72,11 +72,11 @@ public class Campaign {
         this.campaignID = campaignID;
     }
 
-    public int getExternalCampaignID() {
+    public String getExternalCampaignID() {
         return externalCampaignID;
     }
 
-    public void setExternalCampaignID(int externalCampaignID) {
+    public void setExternalCampaignID(String externalCampaignID) {
         this.externalCampaignID = externalCampaignID;
     }
 

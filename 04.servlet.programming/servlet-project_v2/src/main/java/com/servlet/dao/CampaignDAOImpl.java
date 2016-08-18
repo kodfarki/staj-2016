@@ -5,6 +5,7 @@ import com.servlet.helper.ParseHelper;
 import com.servlet.model.Campaign;
 import com.servlet.util.JDBCUtil;
 
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -12,16 +13,13 @@ import java.util.List;
 
 public class CampaignDAOImpl implements CampaignDAO {
 
-
-    private List<Campaign> campaignList;
-
     @Override
     public void insert(Campaign campaign) {
-        String query = "INSERT INTO SLCM_CAMPAIGN VALUES (SEQ_SLCM_DEFAULT.NEXTVAL,?,?,?,?,?,?,?,?,to_date('01.08.2016','dd.MM.yyyy'),to_date('02.08.2016','dd.MM.yyyy'),2)";
+        String query = "INSERT INTO SLCM_CAMPAIGN VALUES (SEQ_SLCM_DEFAULT.NEXTVAL,?,?,?,?,?,?,?,?,?,?,2)";
 
         try {
             PreparedStatement preparedStatement = JDBCUtil.getConnection().prepareStatement(query);
-            preparedStatement.setInt(1, campaign.getExternalCampaignID());
+            preparedStatement.setString(1, campaign.getExternalCampaignID());
             preparedStatement.setDate(2, ParseHelper.convertToSQLDate(campaign.getStartDate()));
             preparedStatement.setDate(3, ParseHelper.convertToSQLDate(campaign.getEndDate()));
             preparedStatement.setInt(4, campaign.getCountControl());
@@ -29,6 +27,8 @@ public class CampaignDAOImpl implements CampaignDAO {
             preparedStatement.setInt(6, campaign.getType());
             preparedStatement.setString(7, campaign.getCampaignName());
             preparedStatement.setString(8, campaign.getDescription());
+            preparedStatement.setDate(9, new java.sql.Date(new Date().getTime()));
+            preparedStatement.setDate(10, new java.sql.Date(new Date().getTime()));
 
             int i = preparedStatement.executeUpdate();
             if (i > 0) {
@@ -47,11 +47,11 @@ public class CampaignDAOImpl implements CampaignDAO {
 
     @Override
     public void update(Campaign campaign) {
-        String query = "UPDATE SLCM_CAMPAIGN SET EXTERNAL_CAMPAIGN_ID=?,START_DATE = ?, END_DATE= ?, COUNT_CONTROL= ?, CAMPAIGN_OPTION= ?, SLCM_CAMPAIGN.TYPE=? , CAMPAIGN_NAME= ?, DESCRIPTION= ?, VERSION= ? WHERE CAMPAIGN_ID= ?";
+        String query = "UPDATE SLCM_CAMPAIGN SET EXTERNAL_CAMPAIGN_ID = ?,START_DATE = ?, END_DATE= ?, COUNT_CONTROL= ?, CAMPAIGN_OPTION= ?, SLCM_CAMPAIGN.TYPE=? , CAMPAIGN_NAME= ?, DESCRIPTION= ?, VERSION= ? WHERE CAMPAIGN_ID= ?";
 
         try {
             PreparedStatement preparedStatement = JDBCUtil.getConnection().prepareStatement(query);
-            preparedStatement.setInt(1, campaign.getExternalCampaignID());
+            preparedStatement.setString(1, campaign.getExternalCampaignID());
             preparedStatement.setDate(2, ParseHelper.convertToSQLDate(campaign.getStartDate()));
             preparedStatement.setDate(3, ParseHelper.convertToSQLDate(campaign.getEndDate()));
             preparedStatement.setInt(4, campaign.getCountControl());
@@ -79,7 +79,7 @@ public class CampaignDAOImpl implements CampaignDAO {
 
     @Override
     public void delete(int campaignID) {
-        String query = "DELETE  FROM SLCM_CAMPAIGN WHERE CAMPAIGN_ID=?";
+        String query = "DELETE FROM SLCM_CAMPAIGN WHERE CAMPAIGN_ID=?";
 
         try {
             PreparedStatement preparedStatement = JDBCUtil.getConnection().prepareStatement(query);
@@ -103,7 +103,7 @@ public class CampaignDAOImpl implements CampaignDAO {
     @Override
     public List<Campaign> select() {
         String query = "SELECT * FROM SLCM_CAMPAIGN";
-        campaignList = new ArrayList<Campaign>();
+        List<Campaign> campaignList = new ArrayList<>();
 
         try {
             PreparedStatement preparedStatement = JDBCUtil.getConnection().prepareStatement(query);
@@ -113,7 +113,7 @@ public class CampaignDAOImpl implements CampaignDAO {
                 Campaign campaign = new Campaign();
 
                 campaign.setCampaignID(resultSet.getInt(1));
-                campaign.setExternalCampaignID(resultSet.getInt(2));
+                campaign.setExternalCampaignID(resultSet.getString(2));
                 campaign.setStartDate(resultSet.getDate(3));
                 campaign.setEndDate(resultSet.getDate(4));
                 campaign.setCountControl(resultSet.getInt(5));
@@ -140,7 +140,6 @@ public class CampaignDAOImpl implements CampaignDAO {
     @Override
     public Campaign selectByID(int campaignID){
         String query = "SELECT * FROM SLCM_CAMPAIGN WHERE CAMPAIGN_ID = ?";
-
         Campaign campaign = new Campaign();
 
         try{
@@ -148,10 +147,9 @@ public class CampaignDAOImpl implements CampaignDAO {
             preparedStatement.setInt(1, campaignID);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-
             if(resultSet.next()){
                 campaign.setCampaignID(resultSet.getInt(1));
-                campaign.setExternalCampaignID(resultSet.getInt(2));
+                campaign.setExternalCampaignID(resultSet.getString(2));
                 campaign.setStartDate(resultSet.getDate(3));
                 campaign.setEndDate(resultSet.getDate(4));
                 campaign.setCountControl(resultSet.getInt(5));
@@ -166,12 +164,9 @@ public class CampaignDAOImpl implements CampaignDAO {
         } catch (Exception exception){
             exception.printStackTrace();
         }
+
         System.out.println(campaign);
         return campaign;
+    }
 
-    }
-    public void close(){
-        JDBCUtil.closeConnection();
-        System.out.println("\nConnection closed..");
-    }
 }

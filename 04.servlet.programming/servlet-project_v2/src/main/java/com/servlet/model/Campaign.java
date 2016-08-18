@@ -1,11 +1,10 @@
 package com.servlet.model;
 
-
 import java.util.Date;
 
 public class Campaign {
     private int campaignID;
-    private int externalCampaignID;
+    private String externalCampaignID;
     private Date startDate;
     private Date endDate;
     private int countControl;
@@ -20,7 +19,7 @@ public class Campaign {
     public Campaign() {
     }
 
-    public Campaign(java.sql.Date startDate, java.sql.Date endDate, int countControl,
+    public Campaign(Date startDate, Date endDate, int countControl,
                     int campaignOption, int type, String campaignName,
                     String description, Date creationDate, Date modificationDate, int version) {
         this.startDate = startDate;
@@ -43,11 +42,11 @@ public class Campaign {
         this.campaignID = campaignID;
     }
 
-    public int getExternalCampaignID() {
+    public String getExternalCampaignID() {
         return externalCampaignID;
     }
 
-    public void setExternalCampaignID(int externalCampaignID) {
+    public void setExternalCampaignID(String externalCampaignID) {
         this.externalCampaignID = externalCampaignID;
     }
 

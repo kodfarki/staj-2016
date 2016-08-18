@@ -4,9 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- * Created by mustafasarac on 1.08.2016.
- */
 
 public class DatabaseConnection {
 
@@ -14,7 +11,7 @@ public class DatabaseConnection {
     private static DatabaseConnection databaseConnection = new DatabaseConnection();
 
     //  Database Connection
-    public static Connection connection;
+    private static Connection connection;
 
     // JDBC driver name and database URL
     private static final String URL = "jdbc:oracle:thin:@localhost:1521:XE";
