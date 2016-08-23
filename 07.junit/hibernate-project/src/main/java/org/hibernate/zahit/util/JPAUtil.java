@@ -12,7 +12,7 @@ public class JPAUtil {
 
     private JPAUtil() {
         try {
-            emf = Persistence.createEntityManagerFactory("Mzg");
+            emf = Persistence.createEntityManagerFactory("mzg");
         } catch (Exception e) {
             e.printStackTrace();
         }

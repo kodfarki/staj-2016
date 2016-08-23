@@ -10,10 +10,10 @@ import java.util.List;
  * Created by GUNEY on 8.08.2016.
  */
 public interface CampaignDAO {
-    public void insert(Campaign campaign);
+    public int insert(Campaign campaign);
     public void update(long id,Campaign campaign);
     public void update2(long id,Campaign campaign);
     public List<Campaign> read();
-    public void delete(long campaignID);
+    public int delete(long campaignID);
 
 }

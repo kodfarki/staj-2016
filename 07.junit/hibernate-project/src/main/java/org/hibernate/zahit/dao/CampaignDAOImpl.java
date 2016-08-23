@@ -6,12 +6,6 @@ import org.hibernate.zahit.util.JPAUtil;
 
 
 import javax.persistence.*;
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,18 +14,21 @@ import java.util.List;
 public class CampaignDAOImpl implements CampaignDAO {
 
     @Override
-    public void insert(Campaign campaign) {
+    public int insert(Campaign campaign) {
         EntityManager em = JPAUtil.getEmf().createEntityManager();
         try {
             em.getTransaction().begin();
             em.persist(campaign);
             em.getTransaction().commit();
+            return 1;
         } catch (Exception e) {
             e.printStackTrace();
             em.getTransaction().rollback();
+            return  0;
         } finally {
             em.close();
         }
+
 
         //try catch transaction ile yonetilmeli rollback
     }
@@ -100,16 +97,20 @@ public class CampaignDAOImpl implements CampaignDAO {
     }
 
     @Override
-    public void delete(long campaignID) {
+    public int delete(long campaignID) {
+        EntityManager em = JPAUtil.getEmf().createEntityManager();
         try {
-            EntityManager em = JPAUtil.getEmf().createEntityManager();
+
             em.getTransaction().begin();
             em.remove(em.find(Campaign.class, campaignID));
             em.getTransaction().commit();
             System.out.println("Deleted Successfully");
+            return 1;
         } catch (Exception e) {
             e.printStackTrace();
+            em.getTransaction().rollback();
             System.out.println("Could Not Deleted");
+            return 0;
         }
     }
 
