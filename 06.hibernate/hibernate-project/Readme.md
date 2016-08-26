@@ -14,7 +14,7 @@ In **persistence.xml** under the resources directory,
  + Used **Hibernate Core 5.2.1.Final** for making the software development independent of the database.
 
 We've configured the information about the database, such as _driver class_, _url_, _username_, and _password_. You can change these configurations by **persistence.xml** file under the resources directory. 
-
+##Hibernate Properties 
 In addition to these, in **persistence.xml** we've defined **hbm2ddl.auto** configuration property as the following:
 ```
 <property name="hbm2ddl.auto" value="update"/>
