@@ -5,9 +5,11 @@ There should only be 1 producer.
 
 2- **worker thread:** reads from EVENT table. Yapilmasi gereken isleri yapar.
 
-İş: EVENT tablosundan okudugu her kayit karsiliginda sistem saatini print eder.
+**İş:** EVENT tablosundan okudugu her kayit karsiliginda sistem saatini print eder.
+<br>
+```
 System.out.println(new Date());
-
+```
 3- Bir row'un islenmesi o gorevin bittigi anlamina gelir. Islenen her row bir daha islenmemelidir. 
 
 
