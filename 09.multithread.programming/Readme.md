@@ -1,4 +1,5 @@
 1. producer thread: inserts rows into EVENT table. Yapilmasi gereken isleri JOB tablosuna kaydediyor.
+There should only be 1 producer.
 
 2. worker thread: reads from EVENT table. Yapilmasi gereken isleri yapar.
 
