@@ -17,3 +17,7 @@ EVENT table
 - creation_date
 - modification_date
 - version 
+
+
+
+http://vichargrave.com/wp-content/uploads/2013/01/producer-consumer-model.png
