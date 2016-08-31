@@ -2,6 +2,7 @@
 There should only be 1 producer.
 
 2. worker thread: reads from EVENT table. Yapilmasi gereken isleri yapar.
+There should only be 3 workers.
 
 Is: EVENT tablosundan okudugu her kayit karsiliginda sistem saatini print eder.
 
