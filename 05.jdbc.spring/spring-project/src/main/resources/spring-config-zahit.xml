@@ -16,8 +16,6 @@
     </bean>
 
 
-    <bean id="connection" class="com.spring.zahit.dao.CampaignDAOImpl">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
+    <bean id="connection" class="com.spring.zahit.dao.CampaignDAOImpl" />
 
 </beans>

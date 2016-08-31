@@ -1,6 +1,6 @@
 # Maven Guide
 
-**Maven Environment Setup For MacOS**
+<h3>Maven Environment Setup For MacOS</h3>
 
 Maven requires JDK installed on your machine.
 
@@ -66,8 +66,7 @@ A typical Maven **Build Lifecycle** consists of the following phases:
 
 When a phase will be executed, all phases up to this specific phase will be executed during this process.
 
-<br>
-**Creating a Project by Maven on Command Console**
+<h3>Creating a Project by Maven on Command Console</h3>
 
 By the following command line:
 ```
@@ -78,8 +77,7 @@ Maven will start to create the Java project structure.
 
 It will ask you which plugin do you want to add to the project structure and then it will ask you to give the information about *groupId, artifactId, version number*. After this point, it builds the project. This project contains the source and test code, resources and pom.xml.
 
-<br>
-**Installing JAR File Into Local Maven Repository**
+<h3>Installing JAR File Into Local Maven Repository </h3>
 
 In order to **install jar** into local Maven repository: 
 ```
@@ -102,3 +100,35 @@ Adding the dependency to POM file like any other dependency:
 ```
 
 After that, you can set **'Toggle Offline Mode'** by _Maven Projects Bar_ in Intellij in order to direct Maven to search this JAR file inside the Local Repository, but not on the Internet.
+
+
+<h3>Scope Tag under Dependency in pom.xml </h3> 
+Scope is used to limit the transitivity of a dependency and to affect the classpath.
+<br> <br>
+The <scope> element can take 6 value: **compile**, **provided**, **runtime**, **test**, **system** and **import**.
+
+For instance:
+```
+<scope>test</scope>
+```
+
+**compile** <br>
+This is the default scope, used if none of them is specified. Compile dependencies are available in all classpaths of a project. 
+
+**provided** <br>
+This is much like compile, but indicates you expect the JDK or a container to provide the dependency at runtime. For example, when building a web application for the Java Enterprise Edition, you would set the dependency on the Servlet API and related Java EE APIs to scope provided because the web container provides those classes. This scope is only available on the compilation and test classpath, and is not transitive.
+
+**runtime** <br>
+This scope indicates that the dependency is not required for compilation, but is for execution. It is in the runtime and test classpaths, but not the compile classpath.
+
+**test** <br>
+This scope indicates that the dependency is not required for normal use of the application, and is only available for the test compilation and execution phases.
+
+**system** <br>
+This scope is similar to provided except that you have to provide the JAR which contains it explicitly. The artifact is always available and is not looked up in a repository.
+
+**import** <br>
+This scope is only used on a dependency of type pom in the section. It indicates that the specified POM should be replaced with the dependencies in that POM's section. Since they are replaced, dependencies with a scope of import do not actually participate in limiting the transitivity of a dependency.
+
+**Reference for Scope Part:** <br>
+http://stackoverflow.com/questions/26975818/what-is-scope-under-dependency-in-pom-xml-for

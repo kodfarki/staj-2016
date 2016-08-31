@@ -21,8 +21,6 @@
     ResultSet resultSet = preparedStatement.executeQuery();
     resultSet.next();
 
-
-
 %>
 <form name="campaignForm" method="get" class="CampaignServlet" action="update">
 <input type="hidden" name="campaignId" value="<% out.print(campaignId); %>">
@@ -38,7 +36,7 @@
             <td align="right">
                 External Campaign Id<font color="red">(*)</font>
             </td>
-            <td><input type="text" name="externalCampaignId" value="7402" style="background-color:#EEF7FF;" value="<% out.print(resultSet.getString("EXTERNAL_CAMPAIGN_ID")); %>" required />
+            <td><input type="text" name="externalCampaignId" style="background-color:#EEF7FF;" value="<% out.print(resultSet.getString("EXTERNAL_CAMPAIGN_ID")); %>" required />
             </td>
         </tr>
         <tr>

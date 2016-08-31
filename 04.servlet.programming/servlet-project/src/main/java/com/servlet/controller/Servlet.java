@@ -62,7 +62,6 @@ public class Servlet extends HttpServlet {
             endDate = new java.sql.Date(parsedEnd.getTime());
         }
 
-
         try {
             // Do not forget to add instructions for Creating these Sequences and SQL Table.
             String insertQuery = "INSERT INTO SLCM_CAMPAIGN VALUES (SEQ_SLCM_DEFAULT.NEXTVAL,?,?,?,?,?,?,?,?,to_date('01.08.2016','dd.MM.yyyy'),to_date('02.08.2016','dd.MM.yyyy'),2)";
