@@ -1,17 +1,18 @@
-1. producer thread: inserts rows into EVENT table. Yapilmasi gereken isleri JOB tablosuna kaydediyor.
+<H2> Multithread Programming </H2>
+
+1- **producer thread:** inserts rows into EVENT table. Yapilmasi gereken isleri JOB tablosuna kaydediyor.
 There should only be 1 producer.
 
-2. worker thread: reads from EVENT table. Yapilmasi gereken isleri yapar.
+2- **worker thread:** reads from EVENT table. Yapilmasi gereken isleri yapar.
 
-Is: EVENT tablosundan okudugu her kayit karsiliginda sistem saatini print eder.
-
+İş: EVENT tablosundan okudugu her kayit karsiliginda sistem saatini print eder.
 System.out.println(new Date());
 
-3. Bir row'un islenmesi o gorevin bittigi anlamina gelir. Islenen her row bir daha islenmemelidir. 
+3- Bir row'un islenmesi o gorevin bittigi anlamina gelir. Islenen her row bir daha islenmemelidir. 
 
 
 
-JOB table
+**JOB table**
 - Id
 - ? (3. requirementla ilgili bir kolon konulacak)
 - job_type: (Bu ornekte default olarak her zaman 'print_system_time' olmali.)
@@ -20,5 +21,4 @@ JOB table
 - version 
 
 
-
-http://vichargrave.com/wp-content/uploads/2013/01/producer-consumer-model.png
+![GitHub Logo](http://vichargrave.com/wp-content/uploads/2013/01/producer-consumer-model.png)
