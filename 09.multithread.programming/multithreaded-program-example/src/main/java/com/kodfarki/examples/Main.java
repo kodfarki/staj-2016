@@ -1,23 +1,16 @@
 package com.kodfarki.examples;
 
-import com.kodfarki.examples.dao.JobDAO;
-import com.kodfarki.examples.dao.JobDAOImpl;
-import com.kodfarki.examples.model.Job;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.util.Date;
+import com.kodfarki.examples.thread.Producer;
 
 public class Main {
 
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:/spring-config.xml");
+        Producer producer = new Producer();
+        producer.start();
 
-        JobDAO jobDAO = applicationContext.getBean(JobDAOImpl.class);
+        Worker worker = new Worker();
+        worker.start();
 
-        jobDAO.insert(new Job(0, 1, new Date(), new Date(), 1));
-        jobDAO.insert(new Job(0, 2, new Date(), new Date(), 2));
-
-        System.out.println(jobDAO.getJobById(1002));
     }
 
 }
