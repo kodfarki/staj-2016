@@ -14,7 +14,7 @@
        ">
 
     <context:annotation-config/>
-    <context:component-scan base-package="com.spring"/>
+    <context:component-scan base-package="com.kodfarki.examples.multithread"/>
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location">
@@ -31,7 +31,7 @@
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="packagesToScan" value="com.spring.zahit.model"/>
+        <property name="packagesToScan" value="com.kodfarki.examples.multithread.model"/>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.show_sql">true</prop>
