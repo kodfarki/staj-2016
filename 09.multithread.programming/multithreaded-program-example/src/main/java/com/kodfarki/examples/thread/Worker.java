@@ -19,7 +19,7 @@ public class Worker extends Thread {
             }
 
             try {
-                Thread.sleep(10001);
+                Thread.sleep(10L);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

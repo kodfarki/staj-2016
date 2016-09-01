@@ -7,22 +7,21 @@ import java.util.Date;
 @Table(name = "JOB")
 public class Job {
 
-    private long Id;
-    private int control;
+    private long id;
+    private int status;
     private int jobType;
     private Date creationDate;
     private Date modificationDate;
     private int version;
 
-    public Job(int control, int jobType, Date creationDate, Date modificationDate, int version) {
-        this.control = control;
+    public Job(int jobType, Date creationDate, Date modificationDate) {
+        this.status = 0;
         this.jobType = jobType;
         this.creationDate = creationDate;
         this.modificationDate = modificationDate;
-        this.version = version;
     }
 
-    public Job() {
+    public Job(){
     }
 
     @Id
@@ -30,20 +29,20 @@ public class Job {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GEN")
     @Column(name = "ID")
     public long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(long id) {
-        Id = id;
+        this.id = id;
     }
 
     @Column(name = "CONTROL")
-    public int getControl() {
-        return control;
+    public int getStatus() {
+        return status;
     }
 
-    public void setControl(int control) {
-        this.control = control;
+    public void setStatus(int control) {
+        this.status = control;
     }
 
     @Column(name = "JOB_TYPE")
@@ -86,8 +85,8 @@ public class Job {
     @Override
     public String toString() {
         return "Job{" +
-                "Id=" + Id +
-                ", control=" + control +
+                "Id=" + id +
+                ", control=" + status +
                 ", jobType=" + jobType +
                 ", creationDate=" + creationDate +
                 ", modificationDate=" + modificationDate +

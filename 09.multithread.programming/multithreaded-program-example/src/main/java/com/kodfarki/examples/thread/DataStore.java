@@ -14,6 +14,7 @@ public class DataStore {
     public List<Job> work(){
         return getInstance().context.getBean(JobDAOImpl.class).findWork();
     }
+
     public void updateWork(long id){
          getInstance().context.getBean(JobDAOImpl.class).updateWork(id);
     }

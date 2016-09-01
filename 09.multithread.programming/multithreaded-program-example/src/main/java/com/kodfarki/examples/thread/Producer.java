@@ -10,10 +10,10 @@ public class Producer extends Thread {
     public void run() {
         while (true) {
             System.out.println("Producer.run");
-            com.kodfarki.examples.thread.DataStore.getInstance().produce(new Job(0, 1, new Date(), new Date(), 1));
+            com.kodfarki.examples.thread.DataStore.getInstance().produce(new Job(1, new Date(), new Date()));
 
             try {
-                Thread.sleep(1000l);
+                Thread.sleep(10L);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

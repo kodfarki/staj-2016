@@ -22,28 +22,21 @@ public class JobDAOImpl implements JobDAO {
         entityManager.persist(job);
     }
 
-
     @Override
     @Transactional
     public void updateWork(long id) {
-        Query query = getEntityManager().createQuery("update Job j set j.control=:cont where j.Id=:id");
+        Query query = getEntityManager().createQuery("update Job j set j.status=:stat where j.id=:id");
         query.setParameter("id", id);
-        query.setParameter("cont", 1);
+        query.setParameter("stat", 1);
         query.executeUpdate();
-
-//        Job job = getEntityManager().find(Job.class,id);
-//        job.setControl(1);
-//        getEntityManager().merge()
-
     }
 
     @Transactional
     @Override
     public List<Job> findWork() {
-        List<Job> results = getEntityManager().createQuery("SELECT c FROM Job c where c.control=0", Job.class).getResultList();
+        List<Job> results = getEntityManager().createQuery("SELECT j FROM Job j where j.status = 0", Job.class).getResultList();
         return results;
     }
-
 
     public EntityManager getEntityManager() {
         return entityManager;
