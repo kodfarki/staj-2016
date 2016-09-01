@@ -2,15 +2,20 @@ package com.kodfarki.examples.thread;
 
 import com.kodfarki.examples.dao.JobDAOImpl;
 import com.kodfarki.examples.model.Job;
-import com.sun.tools.javac.util.List;
+
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.List;
 
 public class DataStore {
 
     private static ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:/spring-config.xml");
 
-    public List<Job> consume(){
-        return getInstance().context.getBean(JobDAOImpl.class).getJobById();
+    public List<Job> work(){
+        return getInstance().context.getBean(JobDAOImpl.class).findWork();
+    }
+    public void updateWork(long id){
+         getInstance().context.getBean(JobDAOImpl.class).updateWork(id);
     }
 
     public void produce(Job job) {
