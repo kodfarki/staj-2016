@@ -12,12 +12,15 @@ public class DataStore {
     List<String> jobs = new ArrayList<String>();
 
     public String consume(){
+
         String job = jobs.get(0);
         return job;
     }
 
     public void produce(String job) {
+        System.out.println("produce starting");
         jobs.add(job);
+        System.out.println("produce finish");
     }
 
     private DataStore() {

@@ -8,21 +8,24 @@ package com.kodfarki.examples.multithread;
 public class Consumer extends Thread{
     @Override
     public void run() {
+
         while (true) {
-            try {
-                String consumed = DataStore.getInstance().consume();
-                System.out.println(Thread.currentThread().getName() + " consumed: " + consumed);
 
-                try {
-                    Thread.sleep(1000l);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
 
-                }
-            } catch (Throwable e) {
-                e.printStackTrace();
+            x();
 
-            }
+        }
+    }
+
+    private synchronized void x() {
+        String consumed = DataStore.getInstance().consume();
+        System.out.println(Thread.currentThread().getName() + " consumed: " + consumed);
+
+        try {
+            Thread.sleep(1000l);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+
         }
     }
 }

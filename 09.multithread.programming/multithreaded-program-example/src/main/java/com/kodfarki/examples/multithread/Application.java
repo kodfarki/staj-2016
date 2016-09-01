@@ -7,14 +7,13 @@ package com.kodfarki.examples.multithread;
  */
 public class Application {
     public static void main(String[] args) {
-        Producer producer = new com.kodfarki.examples.multithread.Producer();
+        System.out.println("Start called");
+
+        Producer producer = new Producer();
         producer.start();
 
-        for (int i=0; i<3;i++) {
-            Consumer consumer = new Consumer();
-            consumer.start();
-        }
 
-        System.out.println("Start called");
+
+
     }
 }
