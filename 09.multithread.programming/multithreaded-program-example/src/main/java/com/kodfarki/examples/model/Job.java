@@ -1,6 +1,14 @@
 package com.kodfarki.examples.model;
 
-import javax.persistence.*;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Version;
 import java.util.Date;
 
 @Entity
@@ -36,13 +44,13 @@ public class Job {
         this.id = id;
     }
 
-    @Column(name = "CONTROL")
+    @Column(name = "STATUS")
     public int getStatus() {
         return status;
     }
 
-    public void setStatus(int control) {
-        this.status = control;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     @Column(name = "JOB_TYPE")

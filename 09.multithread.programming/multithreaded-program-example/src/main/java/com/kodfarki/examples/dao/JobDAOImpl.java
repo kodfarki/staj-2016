@@ -25,10 +25,9 @@ public class JobDAOImpl implements JobDAO {
     @Override
     @Transactional
     public void updateWork(long id) {
-        Query query = getEntityManager().createQuery("update Job j set j.status=:stat where j.id=:id");
-        query.setParameter("id", id);
-        query.setParameter("stat", 1);
-        query.executeUpdate();
+        Job job = getEntityManager().find(Job.class, id);
+        job.setStatus(1);
+        getEntityManager().merge(job);
     }
 
     @Transactional
