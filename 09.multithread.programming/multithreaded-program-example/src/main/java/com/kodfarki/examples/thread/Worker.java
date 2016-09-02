@@ -15,16 +15,21 @@ public class Worker extends Thread {
 
             for(Job job: DataStore.getInstance().work()){
                 System.out.println(job.getCreationDate());
+                sleep();
                 DataStore.getInstance().updateWork(job.getId());
             }
 
-            try {
-                Thread.sleep(10L);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
 
         }
 
+    }
+
+    private void sleep() {
+        try {
+            Thread.sleep(100L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

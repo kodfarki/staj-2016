@@ -9,8 +9,10 @@ public class Main {
        Producer producer = new Producer();
        producer.start();
 
-        Worker worker = new Worker();
-        worker.start();
+        for (int i=0; i<3; i++) {
+            Worker worker = new Worker();
+            worker.start();
+        }
 
     }
 

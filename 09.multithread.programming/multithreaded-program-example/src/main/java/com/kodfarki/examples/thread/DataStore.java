@@ -12,15 +12,15 @@ public class DataStore {
     private static ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:/spring-config.xml");
 
     public List<Job> work(){
-        return getInstance().context.getBean(JobDAOImpl.class).findWork();
+        return context.getBean(JobDAOImpl.class).findWork();
     }
 
     public void updateWork(long id){
-         getInstance().context.getBean(JobDAOImpl.class).updateWork(id);
+         context.getBean(JobDAOImpl.class).updateWork(id);
     }
 
     public void produce(Job job) {
-        getInstance().context.getBean(JobDAOImpl.class).insert(job);
+        context.getBean(JobDAOImpl.class).insert(job);
     }
 
     private DataStore() {
