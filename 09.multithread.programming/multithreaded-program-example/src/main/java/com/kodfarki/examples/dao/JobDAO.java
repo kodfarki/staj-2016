@@ -8,4 +8,5 @@ public interface JobDAO {
     void insert(Job job);
     List<Job> findWork();
     void updateWork(long id);
+    void updateProcess(long id);
 }

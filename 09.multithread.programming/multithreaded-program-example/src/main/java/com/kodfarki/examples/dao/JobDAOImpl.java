@@ -1,14 +1,11 @@
 package com.kodfarki.examples.dao;
 
 import com.kodfarki.examples.model.Job;
-import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
@@ -24,9 +21,17 @@ public class JobDAOImpl implements JobDAO {
 
     @Override
     @Transactional
-    public void updateWork(long id) {
+    public void updateProcess(long id) {
         Job job = getEntityManager().find(Job.class, id);
         job.setStatus(1);
+        getEntityManager().merge(job);
+    }
+
+    @Override
+    @Transactional
+    public void updateWork(long id) {
+        Job job = getEntityManager().find(Job.class, id);
+        job.setStatus(2);
         getEntityManager().merge(job);
     }
 

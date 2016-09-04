@@ -22,16 +22,8 @@
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
                 <property name="generateDdl" value="true"/>
-                <property name="showSql" value="true"/>
+                <property name="showSql" value="false"/>
             </bean>
-
-        </property>
-
-        <property name="jpaProperties">
-               <props>
-                   <prop key="hibernate.connection.pool_size">20</prop>
-                   <prop key="hibernate.hbm2ddl.auto">create</prop>
-               </props>
         </property>
     </bean>
 

@@ -10,13 +10,25 @@ public class Producer extends Thread {
     public void run() {
         while (true) {
             System.out.println("Producer.run");
-            com.kodfarki.examples.thread.DataStore.getInstance().produce(new Job(1, new Date(), new Date()));
+            Job job = new Job(1, new Date(), new Date());
+            DataStore.getInstance().produce(job);
 
-            try {
-                Thread.sleep(10L);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            sleep();
+        }
+    }
+
+    /**
+     * Thread önceliği kuralına göre Thread.sleep sürelerini
+     * bütün Thread classları için aynı yaptım. Aksi takdirde
+     * önceliği olan thread sürekli çalışmaya başlayıp diğer
+     * threadi etkiliyordu.
+     */
+
+    private void sleep() {
+        try {
+            Thread.sleep(100L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

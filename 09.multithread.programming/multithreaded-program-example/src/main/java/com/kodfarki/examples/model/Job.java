@@ -94,7 +94,7 @@ public class Job {
     public String toString() {
         return "Job{" +
                 "Id=" + id +
-                ", control=" + status +
+                ", status=" + status +
                 ", jobType=" + jobType +
                 ", creationDate=" + creationDate +
                 ", modificationDate=" + modificationDate +
