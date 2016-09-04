@@ -6,8 +6,6 @@ A simple JPA & JDBC project that makes insertion, update, deletion, and selectio
 
 #Instructions for the Project
 
-In **persistence.xml** under the resources directory,
-
 **External JARS** 
 
  + Used **Oracle JDBC Driver 10.2.0.4** for Database Connection 
